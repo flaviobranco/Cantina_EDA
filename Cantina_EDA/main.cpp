@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
-//comentário para testar as alterações
+
 int main() {
+	int tam_max = 50;
 
 }
