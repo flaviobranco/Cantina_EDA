@@ -4,10 +4,21 @@
 using namespace std;
 
 int main() {
-	int tam = rand() % 20+ 30;
-	int max_mesa=0;
+	int tam = rand() % 30 + 20;
+	int n_mesa = 0;
+	int rnd=random();
 	mesa* mesa = new struct mesa;
-	inserir_mesas(mesa, tam, max_mesa);
-	mostrar_mesas(mesa, max_mesa);
+	while (tam != 0) {
+		n_mesa += 1;
+		if (tam - random() < 0) {
+			inserir_mesas(mesa,n_mesa,tam);
+			tam = 0;
+		}
+		else {
+			inserir_mesas(mesa, n_mesa, rnd);
+			tam = tam - rnd;
+		}
+		rnd = random();
+	}
 	return 0;
 }
