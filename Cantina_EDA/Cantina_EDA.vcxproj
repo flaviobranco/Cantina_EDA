@@ -128,6 +128,7 @@
     <ClCompile Include="refeição.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aluno_staff.h" />
     <ClInclude Include="Mesa.h" />
     <ClInclude Include="Refeição.h" />
   </ItemGroup>

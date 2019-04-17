@@ -32,5 +32,8 @@
     <ClInclude Include="Mesa.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="aluno_staff.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
