@@ -20,7 +20,7 @@ de funcionário, pelo número do departamento a que pertence e plafond.
 A entidade refeição (ou menu) representa as refeições na cantina EDA cada refeição tem uma entrada, prato
 principal e custo.
 
-Funcionamento geral
+Funcionamento geral:
 A simulação da cantina desenvolve-se por ciclos desencadeados pelo utilizador. Cada vez que o utilizador
 pressionar a tecla ‘s’ + ‘enter’ um novo ciclo começa. Em cada ciclo o sistema deve (por esta ordem):
 a. Remover os alunos e staff que já finalizaram a refeição
