@@ -5,12 +5,12 @@ using namespace std;
 
 int main() {
 	int tam = rand() % 30 + 20;
-	int n_mesa = 0;
-	int rnd=random();
-	mesa* mesa = new struct mesa;
+	int n_mesa = 0;//número de mesas
+	int rnd=random_mesa();
+	mesa mesa[20];//criar a variável struct mesa com o nome "mesa", determinei um limite máximo para o debugging do issue #9 no github
 	while (tam != 0) {
 		n_mesa += 1;
-		if (tam - random() < 0) {
+		if (tam - rnd() < 0) {
 			inserir_mesas(mesa,n_mesa,tam);
 			tam = 0;
 		}
@@ -18,7 +18,8 @@ int main() {
 			inserir_mesas(mesa, n_mesa, rnd);
 			tam = tam - rnd;
 		}
-		rnd = random();
+		rnd = random_mesa();
 	}
+	mostrar_mesas(mesa, n_mesa);
 	return 0;
 }

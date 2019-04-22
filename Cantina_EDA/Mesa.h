@@ -4,5 +4,5 @@ struct mesa {
 	int capacidade;
 };
 void inserir_mesas(mesa * mesa, int posicao,int tamanho);
-int random();
-void mostrar_mesas(mesa* mesa);
+int random_mesa();
+void mostrar_mesas(mesa* mesa,int posicao);
