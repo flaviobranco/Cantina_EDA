@@ -17,3 +17,4 @@ void mostrar_mesas(mesa* mesa, int posicao) {
 int random_mesa() {
 	return rand() % 3 + 2;
 }
+

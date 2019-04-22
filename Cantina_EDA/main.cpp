@@ -4,6 +4,8 @@
 using namespace std;
 
 int main() {
+	refeicao* refeicao;
+	alterar_refeicao(refeicao);
 	int tam = rand() % 30 + 20;
 	int n_mesa = 0;//número de mesas
 	int rnd=random_mesa();
@@ -23,3 +25,4 @@ int main() {
 	mostrar_mesas(mesa, n_mesa);
 	return 0;
 }
+

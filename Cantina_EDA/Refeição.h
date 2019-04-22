@@ -1,9 +1,9 @@
 #pragma once
 struct refeicao {
-	char** entrada;
-	char**  prato;
+	std::string entrada;
+	std::string  prato;
 	float preço;
 };
 
-void nova_refeição();
-void alterar_refeicao();
+void alterar_refeicao(refeicao* refeicao);
+void mostrar_refeicao(refeicao* refeicao);
