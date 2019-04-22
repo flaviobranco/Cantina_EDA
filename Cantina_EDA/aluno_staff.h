@@ -16,3 +16,4 @@ struct staff {
 	float plafond;
 };
 
+void criar_alunos();

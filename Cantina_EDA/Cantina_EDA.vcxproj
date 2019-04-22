@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aluno.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mesa.cpp" />
     <ClCompile Include="refeição.cpp" />

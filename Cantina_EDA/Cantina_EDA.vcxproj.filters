@@ -24,6 +24,9 @@
     <ClCompile Include="mesa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="aluno.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Refeição.h">
