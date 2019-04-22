@@ -1,19 +1,19 @@
 #pragma once
-struct aluno {
-	string pnome;
-	string unome;
+using namespace std;
+
+/*struct aluno {
+	char** pnome;
+	char** unome;
 	int numero_a;
 	int grupo;
-	string curso;
+	char** curso;
 	float plafond;
-};
+};*/
 
-struct staff {
-	string pnome;
-	string unome;
+/*struct staff {
+	char** pnome;
+	char** unome;
 	int numero_f;
 	int n_departamento;
 	float plafond;
-};
-
-void criar_alunos();
+};*/

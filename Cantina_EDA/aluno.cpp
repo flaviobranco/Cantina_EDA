@@ -2,6 +2,3 @@
 #include <iostream>
 using namespace std;
 
-void crir_alunos() {
-
-}

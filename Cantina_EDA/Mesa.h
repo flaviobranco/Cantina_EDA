@@ -1,5 +1,4 @@
 #pragma once
-#include "aluno_staff.h"
 struct mesa {
 	int capacidade;
 	int numero;
