@@ -7,7 +7,7 @@
 
 Início:
 ->De forma a facilitar o funcionamento do programa, assumimos que antes de qualquer aluno/staff entrar na cantina a fila está completa.
-
+->criar refeição
 
 
 Função geral
