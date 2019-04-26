@@ -3,8 +3,7 @@
 using namespace std;
 
 struct pessoa {
-	string pnome;
-	string unome;
+	string nome;
 	int numero_a;
 	int grupo;
 	int numero_f;
@@ -14,4 +13,5 @@ struct pessoa {
 };
 
 string random_line(const char* path);
-void criar_aluno();
+void criar_aluno(pessoa*pessoa,int i);
+void mostrar_aluno(pessoa* pessoa, int i);

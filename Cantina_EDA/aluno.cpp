@@ -21,12 +21,14 @@ std::string random_line(const char* path) //http://www.cplusplus.com/forum/gener
 	return selected;
 }
 
-void criar_aluno() {
-	for (int i = 1; i <= 50; ++i)
-	{
+void criar_aluno(pessoa*pessoa,int i) {
 		string pn= random_line("primeiro_nome.txt");
 		string un= random_line("ultimo_nome.txt");
 		string cs= random_line("cursos.txt");
-		cout << "PNome: " << pn << " Unome: " << un << " Curso: " << cs << endl;
-	}
+		pessoa[i].nome = pn+" "+un;
+		pessoa[i].curso = cs;
+}
+
+void mostrar_aluno(pessoa* pessoa, int i) {
+	cout << "Nome: " << pessoa[i].nome << " Curso: " << pessoa[i].curso << endl;
 }
