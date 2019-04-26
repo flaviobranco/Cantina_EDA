@@ -27,6 +27,16 @@ void criar_pessoa(pessoa*pessoa,int i) {
 		pessoa[i].nome = pn+" "+un;
 		
 }
+void aluno_ou_staff(pessoa* pessoa, int i) {
+	int al_st = rand() % 1 + 1;
+	al_st = rand() % 1 + 1;
+	if (al_st == 1) {
+		pessoa[i].aluno_ou_staff = "Estudante";
+	}
+	else if (al_st == 2) {
+		pessoa[i].aluno_ou_staff = "Staff";
+	}
+}
 
 void mostrar_pessoa(pessoa* pessoa, int i) {
 	cout << "Nome: " << pessoa[i].nome <<  endl;
