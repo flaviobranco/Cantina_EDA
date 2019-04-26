@@ -6,11 +6,9 @@
 #include "time.h"
 using namespace std;
 
-void inicialicazao() {
-	//Fase inicial
+void inicializacao() {//Fase inicial
 	refeicao* refeicao=new struct refeicao; // criar refeição
 	//alterar_refeicao(refeicao);
-	srand(time(0)); // seed the C library lcg
 	int tam = rand()%30+20; //tamanho da cantina
 	tam = rand() % 30 + 20;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212
 	int n_mesa = 0;//número de mesas
@@ -41,7 +39,18 @@ void inicialicazao() {
 		//mostrar_pessoa(pessoa, i);
 	}
 }
+void extrair() {
 
+}
+void guardar() {
+
+}
+void opcoes() {
+
+}
 int main() {
+	srand(time(0)); 
+	inicializacao();
+	extrair();
 	return 0;
 }
