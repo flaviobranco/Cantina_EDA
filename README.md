@@ -20,7 +20,7 @@ de funcionário, pelo número do departamento a que pertence e plafond.
 A entidade refeição (ou menu) representa as refeições na cantina EDA cada refeição tem uma entrada, prato
 principal e custo.
 
-Funcionamento geral
+Funcionamento geral:
 A simulação da cantina desenvolve-se por ciclos desencadeados pelo utilizador. Cada vez que o utilizador
 pressionar a tecla ‘s’ + ‘enter’ um novo ciclo começa. Em cada ciclo o sistema deve (por esta ordem):
 a. Remover os alunos e staff que já finalizaram a refeição
@@ -32,7 +32,10 @@ alteradas e neste caso é pedido ao utilizador para introduzir os dados necessá
 refeições.
 
 Membros do projeto:
-Maria Adão 2043318(Github: ), 
+Maria Adão 2043318(Github:datworfa), 
 Flávio Freitas 2048018(GitHub: ), 
-Pedro Freitas 2043618(GitHub: ), 
+Pedro Freitas 2043618(GitHub:pedlucfreitas), 
 Carlos Gomes 2044318 (GitHub:DerfStein)
+
+Credits to:
+JLBorges(http://www.cplusplus.com/forum/general/114978/) -> random_line()
