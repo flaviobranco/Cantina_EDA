@@ -10,7 +10,8 @@ int main() {
 	mesa* mesa = new struct mesa;
 	while (tam != 0) {
 		n_mesa += 1;
-		if (tam - random() < 0) {
+		rnd = random();
+		if (tam - rnd < 0) {
 			inserir_mesas(mesa,n_mesa,tam);
 			tam = 0;
 		}
@@ -18,7 +19,6 @@ int main() {
 			inserir_mesas(mesa, n_mesa, rnd);
 			tam = tam - rnd;
 		}
-		rnd = random();
 	}
 	return 0;
 }
