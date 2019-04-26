@@ -1,19 +1,17 @@
 #pragma once
+#include <string>
 using namespace std;
 
-/*struct aluno {
-	char** pnome;
-	char** unome;
+struct pessoa {
+	string pnome;
+	string unome;
 	int numero_a;
 	int grupo;
-	char** curso;
-	float plafond;
-};*/
-
-/*struct staff {
-	char** pnome;
-	char** unome;
 	int numero_f;
 	int n_departamento;
+	string curso;
 	float plafond;
-};*/
+};
+
+string random_line(const char* path);
+void criar_aluno();
