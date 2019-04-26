@@ -34,5 +34,5 @@ refeições.
 Membros do projeto:
 Maria Adão 2043318(Github:datworfa), 
 Flávio Freitas 2048018(GitHub: ), 
-Pedro Freitas 2043618(GitHub: ), 
+Pedro Freitas 2043618(GitHub:pedlucfreitas), 
 Carlos Gomes 2044318 (GitHub:DerfStein)
