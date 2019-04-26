@@ -6,13 +6,12 @@
 #include "time.h"
 using namespace std;
 
-int main() {
+void inicialicazao() {
 	//Fase inicial
-	//refeicao* refeicao; // criar refeição
+	refeicao* refeicao=new struct refeicao; // criar refeição
 	//alterar_refeicao(refeicao);
-	//string pnome= random_line("primeiro_nome.txt");
 	srand(time(0)); // seed the C library lcg
-	int tam = rand()%30+20; //tamanho cantina
+	int tam = rand()%30+20; //tamanho da cantina
 	tam = rand() % 30 + 20;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212
 	int n_mesa = 0;//número de mesas
 	int rnd=random_mesa(); //n cadeiras por mesa
@@ -35,11 +34,14 @@ int main() {
 	}
 	//mostrar_mesas(mesa, n_mesa);
 	//nova pessoa(aluno/staff)
-	pessoa*pessoa = new struct pessoa[51];
-	for (int i = 1; i <= 50; i++) {
-		criar_aluno(pessoa,i);
-		//mostrar_aluno(pessoa, i);
+	int tam_pessoa = 50; //1ª entrega, fila com o máximo de 50 pessoas
+	pessoa*pessoa = new struct pessoa[tam_pessoa];
+	for (int i = 1; i <= tam_pessoa; i++) {
+		criar_pessoa(pessoa,i);
+		//mostrar_pessoa(pessoa, i);
 	}
-	return 0;
 }
 
+int main() {
+	return 0;
+}

@@ -13,5 +13,5 @@ struct pessoa {
 };
 
 string random_line(const char* path);
-void criar_aluno(pessoa*pessoa,int i);
-void mostrar_aluno(pessoa* pessoa, int i);
+void criar_pessoa(pessoa*pessoa,int i);
+void mostrar_pessoa(pessoa* pessoa, int i);
