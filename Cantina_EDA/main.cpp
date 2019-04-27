@@ -7,7 +7,7 @@
 using namespace std;
 //flav
 void inicializacao() {//Fase inicial
-	refeicao* refeicao=new struct refeicao; // criar refeição
+	/*refeicao* refeicao=new struct refeicao; // criar refeição
 	//alterar_refeicao(refeicao);
 	int tam = rand()%30+20; //tamanho da cantina
 	tam = rand() % 30 + 20;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212
@@ -32,12 +32,19 @@ void inicializacao() {//Fase inicial
 	}
 	//mostrar_mesas(mesa, n_mesa);
 	//nova pessoa(aluno/staff)
+	*/
 	int tam_pessoa = 50; //1ª entrega, fila com o máximo de 50 pessoas
-	pessoa*pessoa = new struct pessoa[tam_pessoa];
+	pessoa*pessoa = new struct pessoa[tam_pessoa+1];
 	for (int i = 1; i <= tam_pessoa; i++) {
-		criar_pessoa(pessoa,i);
-		//mostrar_pessoa(pessoa, i);
-	}
+		criar_pessoa(pessoa, i);
+		aluno_ou_staff(pessoa, i);
+		criar_número(pessoa, i);
+		criar_curso(pessoa, i);
+		plafond(pessoa, i);
+	};
+	for (int i = 1; i <= tam_pessoa; i++) {
+		mostrar_pessoa(pessoa, i);
+	};
 }
 void extrair() {
 
@@ -51,6 +58,6 @@ void opcoes() {
 int main() {
 	srand(time(0)); 
 	inicializacao();
-	extrair();
+	//extrair();
 	return 0;
 }
