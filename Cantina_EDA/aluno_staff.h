@@ -16,7 +16,8 @@ struct pessoa {
 
 
 string random_line(const char* path);
-void criar_pessoa(pessoa*pessoa,int i);
+void criar_pessoa(pessoa* pessoa, int i);
+void criar_nome(pessoa*pessoa,int i);
 void mostrar_pessoa(pessoa* pessoa, int i);
 void aluno_ou_staff(pessoa* pessoa, int i);
 void criar_número(pessoa* pessoa, int i); 
@@ -24,3 +25,5 @@ void criar_curso(pessoa* pessoa, int i);
 void plafond(pessoa* pessoa, int i);
 void adicionar_plafond(pessoa* pessoa, int i, float preco);
 void especial(pessoa* pessoa, int i);
+void criar_grupo(pessoa* pessoa, int i);
+void verificar_repeticao(pessoa* pessoa, int n);

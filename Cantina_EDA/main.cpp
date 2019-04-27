@@ -6,6 +6,8 @@
 #include "time.h"
 using namespace std;
 //flav
+
+
 void inicializacao() {//Fase inicial
 	/*refeicao* refeicao=new struct refeicao; // criar refeição
 	//alterar_refeicao(refeicao);
@@ -37,15 +39,11 @@ void inicializacao() {//Fase inicial
 	pessoa*pessoa = new struct pessoa[tam_pessoa+1];
 	for (int i = 1; i <= tam_pessoa; i++) {
 		criar_pessoa(pessoa, i);
-		aluno_ou_staff(pessoa, i);
-		criar_número(pessoa, i);
-		criar_curso(pessoa, i);
-		plafond(pessoa, i);
-		especial(pessoa, i);
 	};
 	for (int i = 1; i <= tam_pessoa; i++) {
 		mostrar_pessoa(pessoa, i);
 	};
+	verificar_repeticao(pessoa, tam_pessoa);
 }
 void extrair() {
 
@@ -57,7 +55,7 @@ void opcoes() {
 
 }
 int main() {
-	srand(time(0)); 
+	srand(time(NULL));
 	inicializacao();
 	//extrair();
 	return 0;

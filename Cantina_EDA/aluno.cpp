@@ -3,9 +3,11 @@
 #include <fstream>
 #include <string>
 #include <time.h>
+#include<vector>
+
 using namespace std;
 
-std::string random_line(const char* path) //http://www.cplusplus.com/forum/general/114978/ -> from JLBorges
+std::string random_line(const char* path) //http://www.cplusplus.com/forum/general/114978/ -> from JLBorges, ler linhas aleatórias
 {
 	std::string selected;
 	std::ifstream file(path);
@@ -21,7 +23,8 @@ std::string random_line(const char* path) //http://www.cplusplus.com/forum/gener
 	return selected;
 }
 
-void criar_pessoa(pessoa*pessoa,int i) {
+
+void criar_nome(pessoa*pessoa,int i) {
 		string pn= random_line("primeiro_nome.txt");
 		string un= random_line("ultimo_nome.txt");
 		pessoa[i].nome = pn+" "+un;
@@ -40,7 +43,7 @@ void aluno_ou_staff(pessoa* pessoa, int i) {
 
 void mostrar_pessoa(pessoa* pessoa, int i) {
 	if (pessoa[i].aluno_ou_staff == "Estudante") {
-		cout << pessoa[i].nome << ", " << pessoa[i].aluno_ou_staff << ", " << pessoa[i].curso << ", " << pessoa[i].numero <<", " << pessoa[i].plafond<< pessoa[i].especial << endl;
+		cout << pessoa[i].nome << ", " << pessoa[i].aluno_ou_staff << ", " << pessoa[i].curso << ", " << pessoa[i].numero <<", " << pessoa[i].plafond<<", "<< pessoa[i].especial << endl;
 	}
 	else {
 		cout << pessoa[i].nome << ", " << pessoa[i].aluno_ou_staff << ", " << pessoa[i].numero << ", " << pessoa[i].plafond << endl;
@@ -48,14 +51,8 @@ void mostrar_pessoa(pessoa* pessoa, int i) {
 }
 
 
-
 void criar_número(pessoa* pessoa, int i) {
-	if (pessoa[i].aluno_ou_staff == "Estudante"){ 
-		pessoa[i].numero = rand()%90000+10000;
-	}
-	else if (pessoa[i].aluno_ou_staff =="Staff" ) {
-		pessoa[i].numero = rand()%9000+1000;
-	}
+	pessoa[i].numero = rand() % 500 + 100;//problema, os nú
 }
 
 void criar_curso(pessoa* pessoa, int i) {
@@ -88,4 +85,21 @@ void especial(pessoa* pessoa, int i) {
 			pessoa[i].especial = "false";
 		}
 	}
+}
+
+/*void criar_grupo(pessoa*pessoa,int n) {
+	array
+	for (int i = 1; i <= n; i++) {
+		if (pessoa[i].aluno_ou_staff == "Estudante") {
+			
+		}
+	}
+}*/
+void criar_pessoa(pessoa* pessoa, int i) {
+	criar_nome(pessoa, i);
+	aluno_ou_staff(pessoa, i);
+	criar_número(pessoa, i);
+	criar_curso(pessoa, i);
+	plafond(pessoa, i);
+	especial(pessoa, i);
 }
