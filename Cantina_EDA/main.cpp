@@ -5,7 +5,7 @@
 #include "Mesa.h"
 #include "time.h"
 using namespace std;
-
+//flav
 void inicializacao() {//Fase inicial
 	refeicao* refeicao=new struct refeicao; // criar refeição
 	//alterar_refeicao(refeicao);
