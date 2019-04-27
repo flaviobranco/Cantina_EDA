@@ -10,6 +10,8 @@ struct pessoa {
 	int n_departamento;
 	string curso;
 	float plafond;
+	//bool especial;
+	string especial;
 };
 
 
@@ -21,3 +23,4 @@ void criar_número(pessoa* pessoa, int i);
 void criar_curso(pessoa* pessoa, int i);
 void plafond(pessoa* pessoa, int i);
 void adicionar_plafond(pessoa* pessoa, int i, float preco);
+void especial(pessoa* pessoa, int i);

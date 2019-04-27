@@ -41,6 +41,7 @@ void inicializacao() {//Fase inicial
 		criar_número(pessoa, i);
 		criar_curso(pessoa, i);
 		plafond(pessoa, i);
+		especial(pessoa, i);
 	};
 	for (int i = 1; i <= tam_pessoa; i++) {
 		mostrar_pessoa(pessoa, i);

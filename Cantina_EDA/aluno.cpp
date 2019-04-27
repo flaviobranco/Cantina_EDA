@@ -40,7 +40,7 @@ void aluno_ou_staff(pessoa* pessoa, int i) {
 
 void mostrar_pessoa(pessoa* pessoa, int i) {
 	if (pessoa[i].aluno_ou_staff == "Estudante") {
-		cout << pessoa[i].nome << ", " << pessoa[i].aluno_ou_staff << ", " << pessoa[i].curso << ", " << pessoa[i].numero <<", " << pessoa[i].plafond<< endl;
+		cout << pessoa[i].nome << ", " << pessoa[i].aluno_ou_staff << ", " << pessoa[i].curso << ", " << pessoa[i].numero <<", " << pessoa[i].plafond<< pessoa[i].especial << endl;
 	}
 	else {
 		cout << pessoa[i].nome << ", " << pessoa[i].aluno_ou_staff << ", " << pessoa[i].numero << ", " << pessoa[i].plafond << endl;
@@ -75,4 +75,17 @@ void plafond(pessoa* pessoa, int i){
 void adicionar_plafond(pessoa* pessoa, int i, float preco) {
 	cout << "Insere o plafond adicionado \n";
 	cin >> pessoa[i].plafond;
+}
+
+void especial(pessoa* pessoa, int i) {
+	if (pessoa[i].aluno_ou_staff == "Estudante") {
+		if (rand() % 100 < 5) {//possibilidade de 5% de ser especial
+			//pessoa[i].especial = true;
+			pessoa[i].especial = "true";
+		}
+		else {
+			//pessoa[i].especial = false;
+			pessoa[i].especial = "false";
+		}
+	}
 }
