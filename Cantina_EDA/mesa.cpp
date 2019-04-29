@@ -12,6 +12,7 @@ void mostrar_mesas(mesa* mesa, int posicao) {
 	for (int i = 1; i <= posicao; i++) {
 		cout << "Mesa nº " << i << endl;
 		cout << mesa[i].capacidade << " alunos" << endl;
+
 	}
 }
 
