@@ -1,4 +1,5 @@
 #include "Mesa.h"
+#include"aluno_staff.h"
 #include <iostream>
 using namespace std;
 
@@ -18,3 +19,6 @@ int random_mesa() {
 	return rand() % 5 + 2;
 }
 
+void adicionar_fila_espera(f_espera* espera, int posicao, pessoa*pessoa) {//
+	
+}
