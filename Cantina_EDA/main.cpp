@@ -36,7 +36,7 @@ void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {//Fas
 	rnd_mesa = random_mesa();//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212
 	int pos_aux = 1;
 	int while_aux=1;
-	/*while (tam_aux != 0) {
+	while (tam_aux != 0) {
 		if (while_aux == 0) {
 			pos_mesa_aux += 1;
 			q_mesa(ms, pos_mesa_aux);
@@ -57,10 +57,12 @@ void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {//Fas
 				} while (tam_aux == 1 || tam_aux < 0);
 			}
 		}
+		enumerar_mesa(ms, pos_aux, 0);
+		cap_mesa(ms, pos_aux, 0);
 		while_aux -= 1;
 		pos_aux += 1;
 	}
-	q_mesa(ms, pos_aux);*/
+	q_mesa(ms, pos_mesa_aux);
 	//nova pessoa(aluno/staff) nova fila
 	int tam_pessoa = 50;
 	inserir_tam_fila(f_esp, tam_pessoa);
@@ -69,10 +71,10 @@ void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {//Fas
 		adicionar_fila_espera(f_esp, i, pes, i);
 	};
 	//por pessoas que estão na fila para a mesa
-	/*for (int i = 1; i <= n_can(ms); i++) {
+	for (int i = 1; i <= n_can(ms); i++) {
 		por_pessoa_mesa(ms, i, f_esp[i].pessoa);
 		retirar_fila_espera(f_esp);
-	}*/
+	}
 }
 void seguinte(){
 
@@ -99,7 +101,7 @@ void menu(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes){
 	cout << endl;
 	mostrar_refeicao (ref);
 	cout << endl;
-	//mostrar_mesas(ms);
+	mostrar_mesas(ms);
 	cout << endl;
 	mostrar_fila_espera(f_esp);
 	cout << endl;

@@ -34,10 +34,10 @@ void mostrar_mesas(mesa* ms) {
 	int tam = n_quant_mesas(ms);
 	cout << "Nº de Mesas: " << tam << endl;
 	for (int i = 1; i <= tam; i++) {
-		if (ms[i].numero == n_mesa(ms,i)) {
+		if (ms[i].numero !=0) {
 			cout << "Mesa nº " << n_mesa(ms,i);
 		}
-		if (ms[i].capacidade == cap_mesa(ms, i)) {
+		if (ms[i].capacidade != 0) {
 			cout <<" (Capacidade: "<<cap_mesa(ms,i) << " alunos): " << endl;
 		}
 		cout << "\t";
