@@ -5,6 +5,7 @@
 #include "Mesa.h"
 #include "guardar_carregar.h"
 #include "time.h"
+#include <locale>
 using namespace std;
 //flav
 
@@ -28,6 +29,7 @@ void inicializacao(refeicao*ref,mesa*ms,f_espera*f_esp,pessoa*pes) {//Fase inici
 	tam_cantina = rand() % 30 + 20;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212 ´"o rand convém ser acionado duas vezes para ter a certeza que gera um número aleatório 
 	int tam_aux = tam_cantina; //para o ciclo while
 	int n_mesa = 0;//número de mesas
+	cantina(ms, tam_cantina);
 	int pos_mesa_aux = 0; //para o ciclo while
 	int rnd_mesa=random_mesa(); //n cadeiras por mesa
 	rnd_mesa = random_mesa();//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212
@@ -48,14 +50,18 @@ void inicializacao(refeicao*ref,mesa*ms,f_espera*f_esp,pessoa*pes) {//Fase inici
 		} while (rnd_mesa == 0);
 		rnd_mesa -= 1;
 	}
-
+	q_mesa(ms, pos_mesa_aux);
 	//nova pessoa(aluno/staff) nova fila
 	int tam_pessoa = 50; //1ª entrega, fila com o máximo de 50 pessoas
 	for (int i = 1; i <= tam_pessoa; i++) {
-		criar_pessoa(pes, i);
+		criar_pessoa(pes, i); 
+		adicionar_fila_espera(f_esp, i, pes,i);
 	};
-	for (int i = 0; i <= tam_pessoa; i++) { //primeiro inserir, depois ordenar
-		adicionar_fila_espera(f_esp, i, pes);
+	inserir_tam_fila(f_esp, tam_pessoa);
+	//por pessoas que estão na fila para a mesa
+	for (int i=1; i<=n_can(ms);i++){
+		por_pessoa_mesa(ms, i, f_esp[i].pessoa);
+		retirar_fila_espera(f_esp);
 	}
 }
 void seguinte(){
@@ -79,11 +85,13 @@ void opcoes() {
 void menu(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes){
 	centerstring("Cantina EDA");
 	cout << endl;
-	cout << "(s)Seguinte (e)Emergência (g)Gravar (c)Carregar Dados (o)Opções (e)Sair" << endl;
+	cout << "(s)Seguinte (e)Emergência (g)Gravar (c)Carregar Dados (o)Opções (x)Sair" << endl;
 	cout << endl;
 	mostrar_refeicao (ref);
 	cout << endl;
-	//mostrar_mesa(f_esp);
+	mostrar_mesas(ms);
+	cout << endl;
+	mostrar_fila_espera(f_esp);
 	cout << endl;
 }
 
@@ -101,7 +109,7 @@ int main() {
 		cout << "**** Comando: ";
 		cin >> opcao;
 		cout << endl;
-		if (opcao != 'e') {
+		if (opcao != 'x') {
 			switch (opcao) {
 			case 's': {
 				seguinte();
@@ -128,6 +136,6 @@ int main() {
 			}
 			}
 		}
-	} while (opcao != 'e');
+	} while (opcao != 'x');
 	return 0;
 }

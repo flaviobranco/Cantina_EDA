@@ -3,6 +3,12 @@
 #include <iostream>
 using namespace std;
 //mesa
+void q_mesa(mesa* mesa,int q_ms) {
+	mesa[1].quantidade = q_ms;
+}
+void cantina(mesa* mesa, int cant) {
+	mesa[1].cantina = cant;
+}
 void cap_mesa(mesa* mesa, int i, int cap) {
 	mesa[i].capacidade = cap;
 }
@@ -24,7 +30,8 @@ void ver_pessoa_mesa(mesa* mesa, int posicao) {
 		cout << pes.nome << ", " << pes.aluno_ou_staff << ", " << pes.numero << ", " << pes.plafond << endl;
 	}
 }
-void mostrar_mesas(mesa* mesa, int tam) {
+void mostrar_mesas(mesa* mesa) {
+	int tam = n_quant_mesas(mesa);
 	cout << "Nº de Mesas: " << tam << endl;
 	for (int i = 1; i <= tam; i++) {
 		if (mesa[i].numero != NULL) {
@@ -41,6 +48,24 @@ void mostrar_mesas(mesa* mesa, int tam) {
 int random_mesa() {
 	return rand() % 5 + 2;
 }
+int n_quant_mesas(mesa* ms) {
+	return ms[1].quantidade;
+}
+int cap_mesa(mesa* mesa, int i) {
+	return mesa[i].capacidade;
+}
+int ciclo_mesa(mesa* mesa, int i) {
+	return mesa[i].ciclo;
+}
+int n_mesa(mesa* mesa, int i) {
+	return mesa[i].numero;
+}
+int n_can(mesa *mesa) {
+	return mesa[1].cantina;
+}
+pessoa por_pessoa_mesa(mesa* mesa, int posicao) {
+	return mesa[posicao].pessoa;
+}
 //fila
 void inserir_tam_fila(f_espera* f_esp, int tam_fila) {//
 	f_esp[1].quantidade = tam_fila;
@@ -48,11 +73,12 @@ void inserir_tam_fila(f_espera* f_esp, int tam_fila) {//
 int tm_fila(f_espera* f_esp) {
 	return f_esp[1].quantidade;
 }
-void adicionar_fila_espera(f_espera* f_esp, int posicao, pessoa pes) {//
-	f_esp[posicao].pessoa = pes;
+void adicionar_fila_espera(f_espera* f_esp, int pos_fila, pessoa* pes,int pos_aluno) {//
+	f_esp[pos_fila].pessoa = pes[pos_aluno];
 }
 
-void retirar_fila_espera(f_espera* f_esp,int tam_fila) {
+void retirar_fila_espera(f_espera* f_esp) {
+	int tam_fila = tm_fila(f_esp);
 	for (int i = 2; i <= tam_fila; i++) {
 		f_esp[i - 1].pessoa = f_esp[i].pessoa;
 	}
@@ -62,7 +88,8 @@ void retirar_fila_espera(f_espera* f_esp,int tam_fila) {
 void mover_especial(f_espera* f_esp, int tam_fila) {
 
 }
-void mostrar_fila_espera(f_espera* f_esp, int tam_fila) {
+void mostrar_fila_espera(f_espera* f_esp) {
+	int tam_fila = tm_fila(f_esp);
 	for (int i = 1; i <= tam_fila; i++) {
 		pessoa pes = f_esp[i].pessoa;
 		if (pes.aluno_ou_staff == "Estudante") {
