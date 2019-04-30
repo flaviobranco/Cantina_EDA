@@ -1,9 +1,9 @@
 #include "aluno_staff.h"
 #include <iostream>
-#include <fstream>
+#include <fstream>//carregar ficheiros
 #include <string>
 #include <time.h>
-#include<vector>
+//#include<vector>
 
 using namespace std;
 

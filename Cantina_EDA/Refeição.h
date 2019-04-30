@@ -1,7 +1,9 @@
 #pragma once
+#include <string>
+using namespace std;
 struct refeicao {
-	std::string entrada;
-	std::string  prato;
+	string entrada;
+	string  prato;
 	float preço;
 };
 
