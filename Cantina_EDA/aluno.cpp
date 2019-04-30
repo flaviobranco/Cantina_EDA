@@ -69,20 +69,23 @@ void plafond(pessoa* pessoa, int i){
 	pessoa[i].plafond = (rand() % 1000 + 10)*0.1;
 }
 
-void adicionar_plafond(pessoa* pessoa, int i, float preco) {
+void adicionar_plafond(pessoa pessoa, float preco) {
+	float aux;
 	cout << "Insere o plafond adicionado \n";
-	cin >> pessoa[i].plafond;
+	cin >> aux;
+	pessoa.plafond += aux;
+}
+void remover_plafond(pessoa pessoa, float aux) {
+	pessoa.plafond += aux;
 }
 
 void especial(pessoa* pessoa, int i) {
 	if (pessoa[i].aluno_ou_staff == "Estudante") {
 		if (rand() % 100 < 5) {//possibilidade de 5% de ser especial
-			//pessoa[i].especial = true;
-			pessoa[i].especial = "true";
+			pessoa[i].especial = true;
 		}
 		else {
-			//pessoa[i].especial = false;
-			pessoa[i].especial = "false";
+			pessoa[i].especial = false;
 		}
 	}
 }

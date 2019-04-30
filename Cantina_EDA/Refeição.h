@@ -1,6 +1,7 @@
 #pragma once
-
+#include <string>
 using namespace std;
+
 struct refeicao {
 	string entrada;
 	string  prato;
@@ -8,5 +9,5 @@ struct refeicao {
 	int ciclo;
 };
 
-void alterar_refeicao (refeicao* ref);
-void mostrar_refeicao (refeicao* ref);
+void alterar_refeicao (struct refeicao* ref);
+void mostrar_refeicao (struct refeicao* ref);

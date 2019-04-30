@@ -1,15 +1,14 @@
 #include <iostream>
+#include <string>
 #include <fstream>
 #include "Refeição.h"
 using namespace std;
 
-
 void alterar_refeicao (struct refeicao * ref) {
-	ifstream g;
 	cout << "Introduza a entrada: " << endl; 
-	g.getline(cin, ref->entrada);
+	getline(cin,ref->entrada);
 	cout << "Introduza prato: " << endl;
-	g.getline(cin, ref->prato);
+	getline(cin,ref->prato);
 	cout << "Indroduza o preço \n";
 	cin>> ref->preço;
 }

@@ -30,23 +30,23 @@ void ver_pessoa_mesa(mesa* mesa, int posicao) {
 		cout << pes.nome << ", " << pes.aluno_ou_staff << ", " << pes.numero << ", " << pes.plafond << endl;
 	}
 }
-void mostrar_mesas(mesa* mesa) {
-	int tam = n_quant_mesas(mesa);
+void mostrar_mesas(mesa* ms) {
+	int tam = n_quant_mesas(ms);
 	cout << "Nº de Mesas: " << tam << endl;
 	for (int i = 1; i <= tam; i++) {
-		if (mesa[i].numero != NULL) {
-			cout << "Mesa nº " << i;
+		if (ms[i].numero == n_mesa(ms,i)) {
+			cout << "Mesa nº " << n_mesa(ms,i);
 		}
-		if (mesa[i].capacidade != NULL) {
-			cout <<" (Capacidade: "<<mesa[i].capacidade << " alunos): " << endl;
+		if (ms[i].capacidade == cap_mesa(ms, i)) {
+			cout <<" (Capacidade: "<<cap_mesa(ms,i) << " alunos): " << endl;
 		}
 		cout << "\t";
-		ver_pessoa_mesa(mesa, i);
+		ver_pessoa_mesa(ms, i);
 	}
 }
 
 int random_mesa() {
-	return rand() % 5 + 2;
+	return rand() % 3 + 2;
 }
 int n_quant_mesas(mesa* ms) {
 	return ms[1].quantidade;
