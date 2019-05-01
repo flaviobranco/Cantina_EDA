@@ -92,8 +92,23 @@ void guardar() {
 void carregar() {
 
 }
-void opcoes() {
-
+void opcoes(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {
+	char opcao;
+	cout << "1-Mostrar todas as pessoas \n";
+	cout << "4-Adicionar plafond\n";
+	cin >> opcao;
+	switch (opcao) {
+	case '1':{
+		mostrar_ordenado(pes);
+		break;
+	}
+	case '4':{
+		alterar_plafond(f_esp);
+	}
+	default:{
+		cout << "Opção inválida" << endl;
+	}
+	}
 }
 void menu(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes){
 	centerstring("Cantina EDA");
@@ -115,7 +130,7 @@ int main() {
 	struct refeicao* ref = new struct refeicao;  //é preciso criar as variáveis primeiro,independentemente de haver dados guardados ou não
 	struct mesa* ms = new struct mesa[51];
 	struct f_espera* f_esp = new struct f_espera[51];
-	struct pessoa* pes = new struct pessoa[51];
+	struct pessoa* pes = new struct pessoa[101];
 	char opcao;
 	inicializacao(ref, ms, f_esp, pes);
 	do {

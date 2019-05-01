@@ -26,3 +26,4 @@ void adicionar_plafond(pessoa pessoa, float preco);
 void remover_plafond(pessoa pessoa, float aux);
 void especial(pessoa* pessoa, int i);
 void criar_grupo(pessoa* pessoa, int i);
+void mostrar_ordenado(pessoa*pes);

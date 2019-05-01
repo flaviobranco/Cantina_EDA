@@ -90,6 +90,10 @@ void especial(pessoa* pessoa, int i) {
 	}
 }
 
+void mostrar_ordenado(pessoa* pes) {
+
+}
+
 /*void criar_grupo(pessoa*pessoa,int n) {
 	array
 	for (int i = 1; i <= n; i++) {

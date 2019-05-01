@@ -100,3 +100,20 @@ void mostrar_fila_espera(f_espera* f_esp) {
 		}
 	}
 }
+
+void alterar_plafond(f_espera* fesp) {
+	int tam_file = tm_fila(fesp);
+	int aluno;
+	float preco;
+	cout << "insere o n_aluno" << endl;
+	cin >> aluno;
+	for (int i = 1; i <= tam_file; i++) {
+		pessoa pes = fesp[i].pessoa;
+		if (pes.numero == aluno) {
+			cout << "insere o preco" <<endl ;
+			cin >> preco;
+			pes.plafond += preco;
+		}
+	}
+
+}

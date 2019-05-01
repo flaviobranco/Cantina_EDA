@@ -37,3 +37,4 @@ int tm_fila(f_espera* f_esp);
 void adicionar_fila_espera(f_espera* f_esp, int pos_fila, pessoa* pes,int pos_aluno);
 void retirar_fila_espera(f_espera* f_esp);
 void mostrar_fila_espera(f_espera* f_esp);
+void alterar_plafond(f_espera* fesp);
