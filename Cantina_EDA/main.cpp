@@ -22,8 +22,8 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 }
 
 
-void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {//Fase inicial, se não houver dados gardados
-	int ciclo = 1;
+void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int ciclo) {//Fase inicial, se não houver dados gardados
+	ciclo += 1;
 	ref->ciclo = ciclo;
 	alterar_refeicao(ref);
 	//nova mesa
@@ -131,9 +131,9 @@ int main() {
 	struct mesa* ms = new struct mesa[51];
 	struct f_espera* f_esp = new struct f_espera[51];
 	struct pessoa* pes = new struct pessoa[101];
-	int ciclo;
+	int ciclo=0;
 	char opcao;
-	inicializacao(ref, ms, f_esp, pes);
+	inicializacao(ref, ms, f_esp, pes,ciclo);
 	do {
 		menu(ref, ms, f_esp, pes);
 		cout << "**** Comando: ";

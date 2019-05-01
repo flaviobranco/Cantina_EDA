@@ -90,6 +90,7 @@ void mover_especial(f_espera* f_esp, int tam_fila) {
 }
 void mostrar_fila_espera(f_espera* f_esp) {
 	int tam_fila = tm_fila(f_esp);
+	cout << "Fila de Espera: \n";
 	for (int i = 1; i <= tam_fila; i++) {
 		pessoa pes = f_esp[i].pessoa;
 		if (pes.aluno_ou_staff == "Estudante") {
@@ -112,7 +113,7 @@ void alterar_plafond(f_espera* fesp) {
 		if (pes.numero == aluno) {
 			cout << "insere o preco" <<endl ;
 			cin >> preco;
-			pes.plafond += preco;
+			fesp[i].pessoa.plafond += preco;
 		}
 	}
 
