@@ -29,7 +29,7 @@ int cap_mesa(mesa* mesa, int i);
 int ciclo_mesa(mesa* mesa, int i);
 int n_mesa(mesa* mesa, int i);
 int n_can(mesa* mesa);
-pessoa por_pessoa_mesa(mesa* mesa, int posicao);
+void por_pessoa_mesa(mesa* mesa, int posicao,pessoa pessoa);
 void mostrar_mesas(mesa* mesa);
 //fila
 void inserir_tam_fila(f_espera* f_esp, int tam_fila);

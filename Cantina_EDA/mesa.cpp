@@ -22,9 +22,6 @@ void por_pessoa_mesa(mesa* mesa, int posicao, pessoa pessoa) {
 	mesa[posicao].pessoa = pessoa;
 }
 
-pessoa por_pessoa_mesa(mesa* mesa, int posicao) {
-	return mesa[posicao].pessoa;
-} 
 
 int n_mesa(mesa* mesa, int i) {
 	return mesa[i].numero;
