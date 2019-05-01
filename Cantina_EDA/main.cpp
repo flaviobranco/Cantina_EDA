@@ -25,7 +25,7 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {//Fase inicial, se não houver dados gardados
 	int ciclo = 1;
 	ref->ciclo = ciclo;
-	alterar_refeicao(ref);
+	//alterar_refeicao(ref);
 	//nova mesa
 	int tam_cantina = rand() % 20 + 30; //tamanho da cantina
 	tam_cantina = rand() % 20 + 30;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212 ´"o rand convém ser acionado duas vezes para ter a certeza que gera um número aleatório 
@@ -36,11 +36,13 @@ void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {//Fas
 	int rnd_mesa = random_mesa(); //n cadeiras por mesa
 	rnd_mesa = random_mesa();//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212
 	int pos_aux = 1;
-	int while_aux=1;
+	int while_aux=0;
 	while (tam_aux != 0) {
 		if (while_aux == 0) {
+			if(pos_aux!=1){
+				rnd_mesa = random_mesa();
+			}
 			pos_mesa_aux += 1;
-			q_mesa(ms, pos_mesa_aux);
 			enumerar_mesa(ms, pos_aux, pos_mesa_aux);
 			cap_mesa(ms, pos_aux, rnd_mesa);
 			int tam_anterior = tam_aux;
@@ -48,6 +50,7 @@ void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {//Fas
 			tam_aux -= rnd_mesa;
 			if (tam_aux == 1||tam_aux<0) {
 				do {
+					pos_mesa_aux -= 1;
 					cap_mesa(ms, pos_aux, 0);
 					tam_aux = tam_anterior;
 					rnd_mesa = random_mesa();
@@ -58,8 +61,10 @@ void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {//Fas
 				} while (tam_aux == 1 || tam_aux < 0);
 			}
 		}
-		enumerar_mesa(ms, pos_aux, 0);
-		cap_mesa(ms, pos_aux, 0);
+		else {
+			enumerar_mesa(ms, pos_aux, 0);
+			cap_mesa(ms, pos_aux, 0);
+		}
 		while_aux -= 1;
 		pos_aux += 1;
 	}
@@ -104,6 +109,7 @@ void menu(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes){
 	cout << endl;
 	mostrar_mesas(ms);
 	cout << endl;
+	cout << "Fila Espera:" << endl;
 	mostrar_fila_espera(f_esp);
 	cout << endl;
 }
@@ -153,4 +159,3 @@ int main() {
 	} while (opcao != 'x');
 	return 0;
 }
-

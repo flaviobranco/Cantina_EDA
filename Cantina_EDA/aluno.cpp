@@ -52,7 +52,7 @@ void mostrar_pessoa(pessoa* pessoa, int i) {
 
 
 void criar_número(pessoa* pessoa, int i) {
-	pessoa[i].numero = rand() % 500 + 100;//problema, os nú
+	pessoa[i].numero = rand() % 400 + 100;//problema, os nú
 }
 
 void criar_curso(pessoa* pessoa, int i) {
@@ -91,13 +91,11 @@ void especial(pessoa* pessoa, int i) {
 }
 
 /*void criar_grupo(pessoa*pessoa,int n) {
-	array
-	for (int i = 1; i <= n; i++) {
-		if (pessoa[i].aluno_ou_staff == "Estudante") {
-			
-		}
-	}
+
 }*/
+
+
+
 void criar_pessoa(pessoa* pessoa, int i) {
 	criar_nome(pessoa, i);
 	aluno_ou_staff(pessoa, i);
