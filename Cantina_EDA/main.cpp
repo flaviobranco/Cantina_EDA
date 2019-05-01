@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <string>
 #include "Refeição.h"
@@ -66,7 +67,7 @@ void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {//Fas
 	//nova pessoa(aluno/staff) nova fila
 	int tam_pessoa = 50;
 	inserir_tam_fila(f_esp, tam_pessoa);
-	for (int i = 1; i <= tam_pessoa; i++) {
+	for (int i = 1; i <= tm_fila(f_esp); i++) {
 		criar_pessoa(pes, i);
 		adicionar_fila_espera(f_esp, i, pes, i);
 	};
@@ -152,3 +153,4 @@ int main() {
 	} while (opcao != 'x');
 	return 0;
 }
+
