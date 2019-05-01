@@ -77,19 +77,19 @@ void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {//Fas
 		retirar_fila_espera(f_esp);
 	}
 }
-void seguinte(){
+void seguinte(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int ciclo){
 
 }
-void emergencia(){
+void emergencia(mesa*ms,pessoa*pes){
 
 }
-void extrair(){
+void extrair(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes, int ciclo){
 
 }
-void guardar() {
+void guardar(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes, int ciclo) {
 
 }
-void carregar() {
+void carregar(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes, int ciclo) {
 
 }
 void opcoes(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {
@@ -131,6 +131,7 @@ int main() {
 	struct mesa* ms = new struct mesa[51];
 	struct f_espera* f_esp = new struct f_espera[51];
 	struct pessoa* pes = new struct pessoa[101];
+	int ciclo;
 	char opcao;
 	inicializacao(ref, ms, f_esp, pes);
 	do {
@@ -141,23 +142,23 @@ int main() {
 		if (opcao != 'x') {
 			switch (opcao) {
 			case 's': {
-				seguinte();
+				seguinte(ref,ms,f_esp,pes,ciclo);
 				break;
 			}
 			case'e': {
-				emergencia();
+				emergencia(ms, pes);
 				break;
 			}
 			case'g': {
-				guardar();
+				guardar(ref, ms, f_esp, pes, ciclo);
 				break;
 			}
 			case'c': {
-				carregar();
+				carregar(ref, ms, f_esp, pes, ciclo);
 				break;
 			}
 			case'o': {
-				opcoes();
+				opcoes(ref, ms, f_esp, pes);
 				break;
 			}
 			default: {
