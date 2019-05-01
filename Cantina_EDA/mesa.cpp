@@ -21,6 +21,15 @@ void enumerar_mesa(mesa* mesa, int i,int pos) {
 void por_pessoa_mesa(mesa* mesa, int posicao, pessoa pessoa) {
 	mesa[posicao].pessoa = pessoa;
 }
+
+pessoa por_pessoa_mesa(mesa* mesa, int posicao) {
+	return mesa[posicao].pessoa;
+} 
+
+int n_mesa(mesa* mesa, int i) {
+	return mesa[i].numero;
+}
+
 void ver_pessoa_mesa(mesa* mesa, int posicao) {
 	pessoa pes = mesa[posicao].pessoa;
 	if (pes.aluno_ou_staff == "Estudante") {
@@ -34,11 +43,9 @@ void mostrar_mesas(mesa* ms) {
 	int tam = n_quant_mesas(ms);
 	cout << "Nº de Mesas: " << tam << endl;
 	for (int i = 1; i <= tam; i++) {
-		if (ms[i].numero !=0) {
-			cout << "Mesa nº " << n_mesa(ms,i);
-		}
-		if (ms[i].capacidade != 0) {
-			cout <<" (Capacidade: "<<cap_mesa(ms,i) << " alunos): " << endl;
+		if (ms[i].numero != 0) {
+			cout << "Mesa nº " << n_mesa(ms, i);
+			cout << " (Capacidade: " << cap_mesa(ms, i) << " alunos): " << endl;
 		}
 		cout << "\t";
 		ver_pessoa_mesa(ms, i);
@@ -57,15 +64,11 @@ int cap_mesa(mesa* mesa, int i) {
 int ciclo_mesa(mesa* mesa, int i) {
 	return mesa[i].ciclo;
 }
-int n_mesa(mesa* mesa, int i) {
-	return mesa[i].numero;
-}
+
 int n_can(mesa *mesa) {
 	return mesa[1].cantina;
 }
-pessoa por_pessoa_mesa(mesa* mesa, int posicao) {
-	return mesa[posicao].pessoa;
-}
+
 //fila
 void inserir_tam_fila(f_espera* f_esp, int tam_fila) {//
 	f_esp[1].quantidade = tam_fila;
