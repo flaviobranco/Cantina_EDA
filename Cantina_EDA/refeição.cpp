@@ -1,20 +1,31 @@
 #include <iostream>
+#include <string>
+#include <fstream>
 #include "Refeição.h"
 using namespace std;
 
-
-void alterar_refeicao(refeicao* refeicao) {
-	cout << "Introduza a entrada: \n";
-	cin >> refeicao->entrada;
-	cout << "Introduza prato: \n";
-	cin >> refeicao->prato;
+void alterar_refeicao (struct refeicao * ref) {
+	cout << "Introduza a entrada: " << endl; 
+	getline(cin,ref->entrada);
+	cout << "Introduza prato: " << endl;
+	getline(cin,ref->prato);
 	cout << "Indroduza o preço \n";
-	cin >> refeicao->preço;
+	cin>> ref->preço;
 }
 
-void mostrar_refeicao(refeicao*refeicao) {
+void mostrar_refeicao (struct refeicao*ref) {
 	cout << "Refeição atual: \n";
-	cout << "\t Entrada: " << refeicao->entrada << endl;
-	cout << "\t Prato: " << refeicao->prato << endl;
-	cout << "\t Preço: " << refeicao->preço << endl;
+	cout << "\t Entrada: " << ref->entrada << endl;
+	cout << "\t Prato: " << ref->prato << endl;
+	cout << "\t Preço: " << ref->preço <<"€"<< endl;
+}
+
+string ref_entrada (struct refeicao* ref) {
+	return ref->entrada;;
+}
+string ref_prato(struct refeicao* ref) {
+	return ref->prato;
+}
+float ref_preco(struct refeicao* ref) {
+	return ref->preço;
 }

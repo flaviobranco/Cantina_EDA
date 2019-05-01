@@ -124,12 +124,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="aluno.cpp" />
+    <ClCompile Include="guardar_carregar.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mesa.cpp" />
     <ClCompile Include="refeição.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aluno_staff.h" />
+    <ClInclude Include="guardar_carregar.h" />
     <ClInclude Include="Mesa.h" />
     <ClInclude Include="Refeição.h" />
   </ItemGroup>

@@ -27,6 +27,9 @@
     <ClCompile Include="aluno.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="guardar_carregar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Refeição.h">
@@ -36,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="aluno_staff.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="guardar_carregar.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
