@@ -85,6 +85,7 @@ void seguinte(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int ciclo){
 	ciclo += 1;
 	ref[1].ciclo += ciclo;
 	if (ref[1].ciclo % 10 == 0) {
+
 		alterar_refeicao(ref);
 	}
 }

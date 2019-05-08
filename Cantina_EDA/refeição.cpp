@@ -5,6 +5,8 @@
 using namespace std;
 
 void alterar_refeicao (struct refeicao * ref) {
+	cin.clear();//
+	cin.seekg(0, std::ios::beg);// reset do getline, from Philip Nicoletti ->http://forums.codeguru.com/showthread.php?320724-how-to-reset-quot-getline(File-string)-quot
 	cout << "Introduza a entrada: " << endl; 
 	getline(cin,ref->entrada);
 	cout << "Introduza prato: " << endl;

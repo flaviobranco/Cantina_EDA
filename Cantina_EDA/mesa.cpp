@@ -38,7 +38,7 @@ void ver_pessoa_mesa(mesa* mesa, int posicao) {
 }
 void mostrar_mesas(mesa* ms) {
 	int tam = n_quant_mesas(ms);
-	cout << "Nº de Mesas: " << tam << endl;
+	cout << "Nº de Mesas: " << n_can(ms) << endl;
 	for (int i = 1; i <= tam; i++) {
 		if (ms[i].numero != 0) {
 			cout << "Mesa nº " << n_mesa(ms, i);
