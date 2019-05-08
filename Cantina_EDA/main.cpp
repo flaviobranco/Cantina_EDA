@@ -83,7 +83,7 @@ void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int cic
 }
 void seguinte(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int ciclo){
 	ciclo += 1;
-	ref[1].ciclo = ciclo;
+	ref[1].ciclo += ciclo;
 	if (ref[1].ciclo % 10 == 0) {
 		alterar_refeicao(ref);
 	}
@@ -140,9 +140,9 @@ int main() {
 	struct f_espera* f_esp = new struct f_espera[51];
 	struct pessoa* pes = new struct pessoa[101];
 	int ciclo=0;
-	char opcao;
+	char opcao=' ';
 	inicializacao(ref, ms, f_esp, pes,ciclo);
-	do {
+	while (opcao != 'x') {
 		menu(ref, ms, f_esp, pes);
 		cout << "**** Comando: ";
 		cin >> opcao;
@@ -174,6 +174,6 @@ int main() {
 			}
 			}
 		}
-	} while (opcao != 'x');
+	};
 	return 0;
 }
