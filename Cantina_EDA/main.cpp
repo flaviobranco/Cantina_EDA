@@ -25,12 +25,11 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int ciclo) {//Fase inicial, se não houver dados gardados
 	ciclo += 1;
 	ref->ciclo = ciclo;
-	//alterar_refeicao(ref);
+	alterar_refeicao(ref);
 	//nova mesa
 	int tam_cantina = rand() % 20 + 30; //tamanho da cantina
 	tam_cantina = rand() % 20 + 30;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212 ´"o rand convém ser acionado duas vezes para ter a certeza que gera um número aleatório 
 	int tam_aux = tam_cantina; //para o ciclo while
-	int n_mesa = 0;//número de mesas
 	cantina(ms, tam_cantina);
 	int pos_mesa_aux = 0; //para o ciclo while
 	int rnd_mesa = random_mesa(); //n cadeiras por mesa
@@ -83,7 +82,11 @@ void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int cic
 	}
 }
 void seguinte(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int ciclo){
-
+	ciclo += 1;
+	ref[1].ciclo = ciclo;
+	if (ref[1].ciclo % 10 == 0) {
+		alterar_refeicao(ref);
+	}
 }
 void emergencia(mesa*ms,pessoa*pes){
 
