@@ -124,7 +124,6 @@ void menu(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes){
 	cout << endl;
 	mostrar_mesas(ms);
 	cout << endl;
-	cout << "Fila Espera:" << endl;
 	mostrar_fila_espera(f_esp);
 	cout << endl;
 }
