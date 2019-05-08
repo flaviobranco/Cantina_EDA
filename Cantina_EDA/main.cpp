@@ -85,8 +85,12 @@ void seguinte(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int ciclo){
 	ciclo += 1;
 	ref[1].ciclo += ciclo;
 	if (ref[1].ciclo % 10 == 0) {
-
 		alterar_refeicao(ref);
+	}
+	if (tm_fila(f_esp) < 50) {
+		inserir_tam_fila(f_esp, tm_fila(f_esp)+1);
+		criar_pessoa(pes, 1);
+		adicionar_fila_espera(f_esp, tm_fila(f_esp), pes, 1);
 	}
 }
 void emergencia(mesa*ms,pessoa*pes){
@@ -141,6 +145,7 @@ int main() {
 	struct f_espera* f_esp = new struct f_espera[51];
 	struct pessoa* pes = new struct pessoa[101];
 	int ciclo=0;
+	int tm_pessoa = 0;
 	char opcao=' ';
 	inicializacao(ref, ms, f_esp, pes,ciclo);
 	while (opcao != 'x') {
