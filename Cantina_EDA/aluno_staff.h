@@ -2,28 +2,34 @@
 #include <string>
 using namespace std;
 
-struct pessoa {
-	string nome;
-	string aluno_ou_staff;
-	int numero;
-	int grupo;
-	int n_departamento;
-	string curso;
-	float plafond;
-	bool especial;
-};
+struct pessoa { //grupo de alunos ou staff
+	string aluno ou staff;// Escolhe se é "Estudante" ou "Staff", Um será um grupo entre 2 a 10(exceto se especial for true, nesse caso só terá apenas 1)
+	bool especial;//o aluno é especial? se for um grupo de staff, a resposta é imediatamente falsa
+	struct grupo {//criar grupos de alunos de uma só vez é mais eficiente
+		int n_grupo;
+		struct aluno {// pilha de alunos
+			string nome;
+			int numero;
+			string curso;
+			float plafond;
+			aluno* seguinte;//se especial==true, seguinte será null
+		}; aluno* inicio;
+	};
+	struct departamento{//grupo do staff
+		int n_elementos;
+		int n_departamento;
+		struct staff {
+			string nome;
+			int numero;
+			int n_departamento;
+			float plafond;
+			staff* seguinte;
+		}; staff* inicio;
+	};
+}; 
 
 
 string random_line(const char* path);
-void criar_pessoa(pessoa* pessoa, int i);
-void criar_nome(pessoa*pessoa,int i);
-void mostrar_pessoa(pessoa* pessoa, int i);
-void aluno_ou_staff(pessoa* pessoa, int i);
-void criar_número(pessoa* pessoa, int i); 
-void criar_curso(pessoa* pessoa, int i);
-void plafond(pessoa* pessoa, int i);
-void adicionar_plafond(pessoa pessoa, float preco);
-void remover_plafond(pessoa pessoa, float aux);
-void especial(pessoa* pessoa, int i);
-void criar_grupo(pessoa* pessoa, int i);
-void mostrar_ordenado(pessoa*pes);
+void nova_pessoa();
+void gerar_pessoa(pessoa pes);
+void altura(pessoa pes);

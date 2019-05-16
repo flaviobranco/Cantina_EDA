@@ -22,90 +22,36 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 }
 
 
-void inicializacao(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int ciclo) {//Fase inicial, se não houver dados gardados
+void inicializacao(refeicao ref, mesa ms, f_espera f_esp, pessoa pes, int ciclo) {//Fase inicial, se não houver dados gardados
 	ciclo += 1;
-	ref->ciclo = ciclo;
 	alterar_refeicao(ref);
 	//nova mesa
 	int tam_cantina = rand() % 20 + 30; //tamanho da cantina
 	tam_cantina = rand() % 20 + 30;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212 ´"o rand convém ser acionado duas vezes para ter a certeza que gera um número aleatório 
-	int tam_aux = tam_cantina; //para o ciclo while
-	cantina(ms, tam_cantina);
-	int pos_mesa_aux = 0; //para o ciclo while
-	int rnd_mesa = random_mesa(); //n cadeiras por mesa
-	rnd_mesa = random_mesa();//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212
-	int pos_aux = 1;
-	int while_aux=0;
-	while (tam_aux != 0) {
-		if (while_aux == 0) {
-			if(pos_aux!=1){
-				rnd_mesa = random_mesa();
-			}
-			pos_mesa_aux += 1;
-			enumerar_mesa(ms, pos_aux, pos_mesa_aux);
-			cap_mesa(ms, pos_aux, rnd_mesa);
-			int tam_anterior = tam_aux;
-			while_aux = rnd_mesa;
-			tam_aux -= rnd_mesa;
-			if (tam_aux == 1||tam_aux<0) {
-				do {
-					pos_mesa_aux -= 1;
-					cap_mesa(ms, pos_aux, 0);
-					tam_aux = tam_anterior;
-					rnd_mesa = random_mesa();
-					cap_mesa(ms, pos_aux, rnd_mesa);
-					tam_anterior = tam_aux;
-					while_aux = rnd_mesa;
-					tam_aux -= rnd_mesa;
-				} while (tam_aux == 1 || tam_aux < 0);
-			}
-		}
-		else {
-			enumerar_mesa(ms, pos_aux, 0);
-			cap_mesa(ms, pos_aux, 0);
-		}
-		while_aux -= 1;
-		pos_aux += 1;
-	}
-	q_mesa(ms, pos_mesa_aux);
-	//nova pessoa(aluno/staff) nova fila
-	int tam_pessoa = 50;
-	inserir_tam_fila(f_esp, tam_pessoa);
-	for (int i = 1; i <= tm_fila(f_esp); i++) {
-		criar_pessoa(pes, i);
-		adicionar_fila_espera(f_esp, i, pes, i);
-	};
-	//por pessoas que estão na fila para a mesa
-	for (int i = 1; i <= n_can(ms); i++) {
-		por_pessoa_mesa(ms, i, f_esp[i].pessoa);
-		retirar_fila_espera(f_esp);
+	
+	
+		
 	}
 }
-void seguinte(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes,int ciclo){
+void seguinte(refeicao ref, mesa ms, f_espera f_esp, pessoa pes,int ciclo){
 	ciclo += 1;
-	ref[1].ciclo += ciclo;
-	if (ref[1].ciclo % 10 == 0) {
+	if (ciclo % 10 == 0) {
 		alterar_refeicao(ref);
 	}
-	if (tm_fila(f_esp) < 50) {
-		inserir_tam_fila(f_esp, tm_fila(f_esp)+1);
-		criar_pessoa(pes, 1);
-		adicionar_fila_espera(f_esp, tm_fila(f_esp), pes, 1);
-	}
 }
-void emergencia(mesa*ms,pessoa*pes){
+void emergencia(mesa ms,pessoa pes){
 
 }
-void extrair(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes, int ciclo){
+void extrair(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes, int ciclo){
 
 }
-void guardar(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes, int ciclo) {
+void guardar(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes, int ciclo) {
 
 }
-void carregar(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes, int ciclo) {
+void carregar(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes, int ciclo) {
 
 }
-void opcoes(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {
+void opcoes(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes) {
 	char opcao;
 	cout << "1-Mostrar todas as pessoas \n";
 	cout << "4-Adicionar plafond\n";
@@ -123,7 +69,7 @@ void opcoes(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes) {
 	}
 	}
 }
-void menu(refeicao* ref, mesa* ms, f_espera* f_esp, pessoa* pes){
+void menu(refeicao* ref, mesa* ms, f_espera* f_esp){
 	centerstring("Cantina EDA");
 	cout << endl;
 	cout << "(s)Seguinte (e)Emergência (g)Gravar (c)Carregar Dados (o)Opções (x)Sair" << endl;
@@ -141,13 +87,12 @@ int main() {
 	srand(time(NULL));
 	locale::global(locale(""));
 	struct refeicao* ref = new struct refeicao;  //é preciso criar as variáveis primeiro,independentemente de haver dados guardados ou não
-	struct mesa* ms = new struct mesa[51];
-	struct f_espera* f_esp = new struct f_espera[51];
-	struct pessoa* pes = new struct pessoa[101];
+	f_espera f_esp;
+	cantina cant;
+	mesa ms;
 	int ciclo=0;
-	int tm_pessoa = 0;
 	char opcao=' ';
-	inicializacao(ref, ms, f_esp, pes,ciclo);
+	inicializacao(ref, ms, f_esp, pes);
 	while (opcao != 'x') {
 		menu(ref, ms, f_esp, pes);
 		cout << "**** Comando: ";
