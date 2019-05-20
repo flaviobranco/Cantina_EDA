@@ -5,7 +5,7 @@
 #include <fstream>//carregar/guardar ficheiros
 #include <string>
 //guardar
-
+/*
 void guardar_refeicao(refeicao* ref) {
 
 }
@@ -58,4 +58,4 @@ void carregar(refeicao ref, f_espera f_esp, cantina cant, int ciclo) {
 	else {
 		cout << "ERRO:Ficheiros necessários não estão presentes ou acessiveis na pasta da cantina" << endl;
 	}
-}
+}*/

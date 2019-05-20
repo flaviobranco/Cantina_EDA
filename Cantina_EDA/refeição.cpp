@@ -4,30 +4,37 @@
 #include "Refeição.h"
 using namespace std;
 
-void alterar_refeicao (struct refeicao * ref) {
+void novarefeicao(listaref &lista, string entrada, string prato, float preco) {
+	listaref::refeicao* novarefeicao = new listaref::refeicao();
+	novarefeicao->entrada = entrada;
+	novarefeicao->prato = prato;
+	novarefeicao->preco = preco;
+	novarefeicao->anterior = lista.actual;
+	lista.actual = novarefeicao;
+}
+
+
+void alterar_refeicao (struct listaref &lista) {
 	cin.clear();//
 	cin.seekg(0, std::ios::beg);// reset do getline, from Philip Nicoletti ->http://forums.codeguru.com/showthread.php?320724-how-to-reset-quot-getline(File-string)-quot
+	string entrada;
+	string prato;
+	float preço;
 	cout << "Introduza a entrada: " << endl; 
-	getline(cin,ref->entrada);
+	getline(cin,entrada);
 	cout << "Introduza prato: " << endl;
-	getline(cin,ref->prato);
+	getline(cin,prato);
 	cout << "Indroduza o preço \n";
-	cin>> ref->preço;
+	cin>> preço;
+	novarefeicao(lista, entrada, prato, preço);
 }
 
-void mostrar_refeicao (struct refeicao*ref) {
+void mostrar_refeicao (struct listaref &lista) {
+	listaref::refeicao* ref = lista.actual;
 	cout << "Refeição atual: \n";
-	cout << "\t Entrada: " << ref->entrada << endl;
-	cout << "\t Prato: " << ref->prato << endl;
-	cout << "\t Preço: " << ref->preço <<"€"<< endl;
+	cout << "\t Entrada: " <<ref->entrada << endl;
+	cout << "\t Prato: " <<ref->prato << endl;
+	cout << "\t Preço: " <<ref->preco  <<"€"<< endl;
 }
 
-string ref_entrada (struct refeicao* ref) {
-	return ref->entrada;;
-}
-string ref_prato(struct refeicao* ref) {
-	return ref->prato;
-}
-float ref_preco(struct refeicao* ref) {
-	return ref->preço;
-}
+

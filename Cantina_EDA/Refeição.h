@@ -2,11 +2,15 @@
 #include <string>
 using namespace std;
 
-struct refeicao {
-	string entrada;
-	string  prato;
-	float preço;
+struct listaref {
+	struct refeicao {
+		string entrada;
+		string prato;
+		float preco;
+		refeicao* anterior;
+	}; refeicao* actual;
 };
 
-void alterar_refeicao (struct refeicao* ref);
-void mostrar_refeicao (struct refeicao* ref);
+void novarefeicao(listaref& lista, string entrada, string prato, float preco);
+void alterar_refeicao(struct listaref& lista);
+void mostrar_refeicao(struct listaref& lista);

@@ -2,9 +2,9 @@
 #include <iostream>
 #include <string>
 #include "Refeição.h"
-#include "aluno_staff.h"
+/*#include "aluno_staff.h"
 #include "Mesa.h"
-#include "guardar_carregar.h"
+#include "guardar_carregar.h"*/
 #include "time.h"
 #include <locale>
 using namespace std;
@@ -22,18 +22,19 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 }
 
 
-void inicializacao(refeicao ref, mesa ms, f_espera f_esp, pessoa pes, int ciclo) {//Fase inicial, se não houver dados gardados
-	ciclo += 1;
+void inicializacao(listaref &ref/*, mesa ms, f_espera f_esp, pessoa pes, int ciclo*/) {//Fase inicial, se não houver dados gardados
+	//ciclo += 1;
 	alterar_refeicao(ref);
+	mostrar_refeicao(ref);
 	//nova mesa
-	int tam_cantina = rand() % 20 + 30; //tamanho da cantina
-	tam_cantina = rand() % 20 + 30;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212 ´"o rand convém ser acionado duas vezes para ter a certeza que gera um número aleatório 
+	//int tam_cantina = rand() % 20 + 30; //tamanho da cantina
+	//tam_cantina = rand() % 20 + 30;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212 ´"o rand convém ser acionado duas vezes para ter a certeza que gera um número aleatório 
 	
 	
 		
-	}
+	
 }
-void seguinte(refeicao ref, mesa ms, f_espera f_esp, pessoa pes,int ciclo){
+/*void seguinte(listaref &ref, mesa ms, f_espera f_esp, pessoa pes,int ciclo){
 	ciclo += 1;
 	if (ciclo % 10 == 0) {
 		alterar_refeicao(ref);
@@ -68,9 +69,9 @@ void opcoes(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes) {
 		cout << "Opção inválida" << endl;
 	}
 	}
-}
+
 void menu(refeicao* ref, mesa* ms, f_espera* f_esp){
-	centerstring("Cantina EDA");
+	/*centerstring("Cantina EDA");
 	cout << endl;
 	cout << "(s)Seguinte (e)Emergência (g)Gravar (c)Carregar Dados (o)Opções (x)Sair" << endl;
 	cout << endl;
@@ -80,20 +81,19 @@ void menu(refeicao* ref, mesa* ms, f_espera* f_esp){
 	cout << endl;
 	mostrar_fila_espera(f_esp);
 	cout << endl;
-}
+
+}*/
 
 
 int main() {
-	srand(time(NULL));
+	//srand(time(NULL));
 	locale::global(locale(""));
-	struct refeicao* ref = new struct refeicao;  //é preciso criar as variáveis primeiro,independentemente de haver dados guardados ou não
-	f_espera f_esp;
-	cantina cant;
-	mesa ms;
-	int ciclo=0;
+	listaref ref;
+	ref.actual = NULL;
+	//int ciclo=0;
 	char opcao=' ';
-	inicializacao(ref, ms, f_esp, pes);
-	while (opcao != 'x') {
+	inicializacao(ref/*, ms, f_esp, pes*/);
+	/*while (opcao != 'x') {
 		menu(ref, ms, f_esp, pes);
 		cout << "**** Comando: ";
 		cin >> opcao;
@@ -120,11 +120,15 @@ int main() {
 				opcoes(ref, ms, f_esp, pes);
 				break;
 			}
+			case'x': {
+				cout << "Obrigado por usar o programa. A sair do programa..." << endl;
+				break;
+			}
 			default: {
 				cout << "Escolha uma opção válida." << endl;
 			}
 			}
 		}
-	};
+	};*/
 	return 0;
 }
