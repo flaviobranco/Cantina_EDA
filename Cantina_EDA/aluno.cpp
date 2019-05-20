@@ -1,4 +1,4 @@
-/*
+
 #include "aluno_staff.h"
 #include <iostream>
 #include <fstream>//carregar ficheiros
@@ -26,18 +26,25 @@ std::string random_line(const char* path) //http://www.cplusplus.com/forum/gener
 
 
 
-void gerar_pessoa(pessoa pes) {
-	aluno_ou_staff(pes);
+void aluno_ou_staff(pessoa pes) {
+	pessoa::check* aux 
+	string response;
+	if (rand() 100+1<50) {
+		response = "Estudante";
+	}
+	else {
+		response = "Staff";
+	}
 }
 
-string aluno_ou_staff(pessoa pes) {
-
-}
-
-void criar_nome(pessoa pessoa) {
+void criar_nome(pessoa &pessoa) {
 		string pn= random_line("primeiro_nome.txt");
 		string un= random_line("ultimo_nome.txt");
 		
+}
+
+void gerar_pessoa(pessoa pes) {
+	aluno_ou_staff(pes);
 }
 
 bool aluno(pessoa pes) {

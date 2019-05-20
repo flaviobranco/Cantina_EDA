@@ -22,8 +22,8 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 }
 
 
-void inicializacao(listaref &ref/*, mesa ms, f_espera f_esp, pessoa pes, int ciclo*/) {//Fase inicial, se não houver dados gardados
-	//ciclo += 1;
+void inicializacao(listaref &ref/*, mesa ms, f_espera f_esp, pessoa pes*/, int ciclo) {//Fase inicial, se não houver dados gardados
+	ciclo += 1;
 	alterar_refeicao(ref);
 	mostrar_refeicao(ref);
 	//nova mesa
@@ -70,7 +70,7 @@ void opcoes(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes) {
 	}
 	}
 
-void menu(refeicao* ref, mesa* ms, f_espera* f_esp){
+void menu(listaref &ref, mesa &ms, f_espera &f_esp){
 	/*centerstring("Cantina EDA");
 	cout << endl;
 	cout << "(s)Seguinte (e)Emergência (g)Gravar (c)Carregar Dados (o)Opções (x)Sair" << endl;
@@ -86,13 +86,12 @@ void menu(refeicao* ref, mesa* ms, f_espera* f_esp){
 
 
 int main() {
-	//srand(time(NULL));
+	srand(time(NULL));
 	locale::global(locale(""));
 	listaref ref;
-	ref.actual = NULL;
-	//int ciclo=0;
+	int ciclo=0;
 	char opcao=' ';
-	inicializacao(ref/*, ms, f_esp, pes*/);
+	inicializacao(ref/*, ms, f_esp, pes*/,ciclo);
 	/*while (opcao != 'x') {
 		menu(ref, ms, f_esp, pes);
 		cout << "**** Comando: ";
