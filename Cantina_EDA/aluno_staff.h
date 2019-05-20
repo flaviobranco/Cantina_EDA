@@ -3,10 +3,7 @@
 using namespace std;
 
 struct pessoa {
-	struct check {
-		string aluno_ou_staff;// se é "Estudante" ou "Staff"
-		check * seguinte
-	}; check* inicio;
+	string aluno_ou_staff;// se é "Estudante" ou "Staff"
 	struct grupo {//criar grupos de alunos de uma só vez é mais eficiente
 		bool especial;//o aluno é especial?
 		int n_grupo;
@@ -18,8 +15,7 @@ struct pessoa {
 			float plafond;
 			aluno* seguinte;//se especial==true, seguinte será null
 		}; aluno* inicio;
-		grupo* seguinte;
-	}; grupo* inicio;
+	};
 	struct departamento {//grupo do staff
 		int n_elementos;//Um departamento entre 2 a 10
 		int n_departamento; 
@@ -29,8 +25,7 @@ struct pessoa {
 			float plafond;
 			staff* seguinte;
 		}; staff* inicio;
-		departamento* seguinte;
-	}; departamento* inicio;
+	}; 
 };
 
 

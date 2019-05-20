@@ -25,7 +25,7 @@ std::string random_line(const char* path) //http://www.cplusplus.com/forum/gener
 }
 //pessoa
 bool p_vazia(pessoa& pes) {
-	if (pes.inicio == NULL) {
+	if (pes == NULL) {
 		return true;
 	}
 	else {
@@ -33,19 +33,19 @@ bool p_vazia(pessoa& pes) {
 	}
 }
 void nova_pessoa(pessoa& pes) {
-	pes.inicio = NULL;
+	pes = NULL;
 }
 
 
 void aluno_ou_staff(pessoa &pes) {
-	pessoa::check* aux = new pessoa::check();
+	pessoa* aux = new pessoa;
 	if ((rand()% 100+1) <50) {
 		aux->aluno_ou_staff= "Estudante";
 	}
 	else {
 		aux->aluno_ou_staff = "Staff";
 	}
-	pes.inicio = aux;
+	pes = aux;
 }
 
 bool aluno(pessoa& pes) {
@@ -68,7 +68,7 @@ void gerar_id(pessoa& pes) {
 		pessoa::departamento* aux = new pessoa::departamento();
 		aux->n_grupo = rand() % 401 + 300;
 	}
-	pes.inicio = aux;
+	pes = aux;
 }
 
 void gerar_elemen(pessoa& pes) {
@@ -85,7 +85,7 @@ void gerar_elemen(pessoa& pes) {
 		pessoa::departamento* aux = new pessoa::departamento();
 		aux->n_elementos= rand() % 8 + 2;
 	}
-	pes.inicio->aux;
+	pes->aux;
 }
 //grupo
 void especial(pessoa& pes) {
@@ -96,31 +96,86 @@ void especial(pessoa& pes) {
 	else {
 		aux->especial = true;
 	}
-	pes.inicio = aux;
+	pes= aux;
 }
 
 bool e_especial(pessoa& pes) {
-	pessoa::grupo* aux = pes.inicio;
+	pessoa::grupo* aux = pes;
 	return aux->especial;
 }
 
-void criar_nome(pessoa &pessoa) {
-		string pn= random_line("primeiro_nome.txt");
-		string un= random_line("ultimo_nome.txt");
-		
-}
-//aluno
-
-
-void geraraluno(pessoa& pes) {
-	void 
-}
-void gerar_pessoa(pessoa& pes) {
-	aluno_ou_staff(pes);
+void criar_nome(pessoa &pes) {
 	if (aluno(pes)) {
-		especial(pes);
+		pessoa::grupo::aluno* aux = new struct pessoa::grupo::aluno();
+		pessoa::grupo* aux2 = pes;
+		string pn = random_line("primeiro_nome.txt");
+		string un = random_line("ultimo_nome.txt");
+		aux->nome = pn + " " + un;
+		aux->seguinte = aux2->inicio;
+		aux2->inicio = aux;
+	}
+	else {
+		pessoa::departamento::staff* aux = new struct pessoa::departamento::staff();
+		pessoa::grupo::staff* aux2 = pes;
+		string pn = random_line("primeiro_nome.txt");
+		string un = random_line("ultimo_nome.txt");
+		aux->nome = pn + " " + un;
+		aux->seguinte = aux2->inicio;
+		aux2->inicio = aux;
+	}
+}
+
+void criar_numero(pessoa& pes) {
+	if (aluno(pes)) {
+		pessoa::grupo::aluno* aux = new struct pessoa::grupo::aluno();
+		pessoa::grupo* aux2 = pes;
+		aux->numero = rand() % 89000 + 10000;
+		aux->seguinte = aux2->inicio;
+		aux2->inicio = aux;
+	}
+	else {
+		pessoa::departamento::staff* aux = new struct pessoa::departamento::staff();
+		pessoa::departamento::staff* aux2 = pes;
+		string pn = random_line("primeiro_nome.txt");
+		string un = random_line("ultimo_nome.txt");
+		aux->numero = rand() % 8900 + 1000;
+		aux->seguinte = aux2->inicio;
+		aux2->inicio = aux;
+	}
+}
+
+void criar_plafond(pessoa& pes) {
+	if (aluno(pes)) {
+		pessoa::grupo::aluno* aux = new struct pessoa::grupo::aluno();
+		pessoa::grupo* aux2 = pes;
+		aux->plafond = (rand() % 1000 + 1) * (0.1);
+		aux->seguinte = aux2->inicio;
+		aux2->inicio = aux;
+	}
+	else {
+		pessoa::departamento::staff* aux = new struct pessoa::departamento::staff();
+		pessoa::departamento::staff* aux2 = pes;
+		aux->plafond = (rand() % 1000 + 1) * (0.1);
+		aux->seguinte = aux2->inicio;
+		aux2->inicio = aux;
+	}
+}
+
+void gerarpessoa(pessoa& pes) {
+	if (aluno(pes)) {
+		criar_nome(pes);
+		criar_numero(pes);
+		criar_plafond(pes);
 	}
 	else {
 
 	}
+}
+void gerar_pessoa(pessoa& pes) {
+	nova_pessoa(pes);
+	aluno_ou_staff(pes);
+	especial(pes);
+	gerar_id(pes);
+	gerar_elemen(pes);
+
 }
