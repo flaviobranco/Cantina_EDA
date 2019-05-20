@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 #include "Refeição.h"
-/*#include "aluno_staff.h"
-#include "Mesa.h"
+#include "aluno_staff.h"
+/*#include "Mesa.h"
 #include "guardar_carregar.h"*/
 #include "time.h"
 #include <locale>
@@ -89,6 +89,7 @@ int main() {
 	srand(time(NULL));
 	locale::global(locale(""));
 	listaref ref;
+	pessoa pes;
 	int ciclo=0;
 	char opcao=' ';
 	inicializacao(ref/*, ms, f_esp, pes*/,ciclo);
