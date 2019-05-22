@@ -22,10 +22,12 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 }
 
 
-void inicializacao(listaref &ref/*, mesa ms, f_espera f_esp, pessoa pes*/, int ciclo) {//Fase inicial, se não houver dados gardados
+void inicializacao(listaref &ref, /*mesa ms, f_espera f_esp,*/ pessoa &pes, int ciclo) {//Fase inicial, se não houver dados gardados
 	ciclo += 1;
-	alterar_refeicao(ref);
-	mostrar_refeicao(ref);
+	//alterar_refeicao(ref);
+	//mostrar_refeicao(ref);
+	gerar_pessoa(pes);
+	mostrar_pessoa(pes);
 	//nova mesa
 	//int tam_cantina = rand() % 20 + 30; //tamanho da cantina
 	//tam_cantina = rand() % 20 + 30;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212 ´"o rand convém ser acionado duas vezes para ter a certeza que gera um número aleatório 
@@ -92,7 +94,7 @@ int main() {
 	pessoa pes;
 	int ciclo=0;
 	char opcao=' ';
-	inicializacao(ref/*, ms, f_esp, pes*/,ciclo);
+	inicializacao(ref,/* ms, f_esp,*/ pes,ciclo);
 	/*while (opcao != 'x') {
 		menu(ref, ms, f_esp, pes);
 		cout << "**** Comando: ";
