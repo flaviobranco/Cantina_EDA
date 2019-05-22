@@ -24,33 +24,27 @@ std::string random_line(const char* path) //http://www.cplusplus.com/forum/gener
 	return selected;
 }
 //pessoa
-bool p_vazia(pessoa& pes) {
-	if (pes == NULL) {
+
+/*bool p_vazia(pessoa& pes) {
+	if (pes.aluno_ou_staff == "") {
 		return true;
 	}
 	else {
 		return false;
 	}
-}
-/*void nova_pessoa(pessoa& pes) {
-	pes = 0;
 }*/
 
-
 void aluno_ou_staff(pessoa &pes) {
-	pessoa aux = new pessoa;
 	if ((rand()% 100+1) <50) {
-		aux->aluno_ou_staff= "Estudante";
+		pes.aluno_ou_staff= "Estudante";
 	}
 	else {
-		aux->aluno_ou_staff = "Staff";
+		pes.aluno_ou_staff = "Staff";
 	}
-	pes = aux;
 }
 
 bool aluno(pessoa& pes) {
-	pessoa aux = pes;
-	if (aux->aluno_ou_staff == "Estudante") {
+	if (pes.aluno_ou_staff == "Estudante") {
 		return true;
 	}
 	else {
@@ -58,22 +52,34 @@ bool aluno(pessoa& pes) {
 	}
 }
 
-void gerar_id(pessoa& pes) {
+void gerar_id(pessoa &pes) {
 	if (aluno(pes)) {
-		pessoa::grupo* aux = new pessoa::grupo();
-		aux->n_grupo = rand() % 401 + 300;
-		pes = aux;
+		pessoa::grupo* aux = new struct pessoa::grupo();
+		aux->n_grupo = rand() % 401 + 100;
+		pes.a_guardar= aux;
 	}
 	else
 	{
 		pessoa::departamento* aux = new pessoa::departamento();
-		aux->n_departamento = rand() % 401 + 300;
-		pes = aux;
+		aux->n_departamento = rand() % 401 + 100;
+		pes.d_guardar = aux;
 	}
 }
+void especial(pessoa& pes) {
+	if (aluno(pes)) {
+		pessoa::grupo* aux = new pessoa::grupo();
+		if (rand() % 100 + 1 < 5) {
+			aux->especial = true;
+		}
+		else {
+			aux->especial = false;
+		}
+		pes.a_guardar = aux;
+	}
+}
+
 bool e_especial(pessoa& pes) {
-	pessoa::grupo* aux = pes;
-	return aux->especial;
+	return pes.a_guardar->especial;
 }
 
 void gerar_elemen(pessoa& pes) {
@@ -85,112 +91,91 @@ void gerar_elemen(pessoa& pes) {
 		else {
 			aux->n_elementos = rand()%8+2;
 		}
+		pes.a_guardar = aux;
 	}
 	else {
 		pessoa::departamento* aux = new pessoa::departamento();
 		aux->n_elementos= rand() % 8 + 2;
+		pes.d_guardar = aux;
 	}
-	pes=aux;
 }
 
-int num_elementos(pessoa* pes) {
+int num_elementos(pessoa& pes) {
 	if (aluno(pes)) {
-		pessoa::grupo* aux = pes;
+		pessoa::grupo* aux = pes.a_guardar;
 		return aux->n_elementos;
 	}
 	else {
-		pessoa::departamento* aux = pes;
+		pessoa::departamento* aux = pes.d_guardar;
 		return aux->n_elementos;
 	}
 }
 //grupo
-void especial(pessoa& pes) {
-	pessoa::grupo* aux = new pessoa::grupo();
-	if ((rand()%100+1)>5){
-		aux->especial = false;
-	}
-	else {
-		aux->especial = true;
-	}
-	pes= aux;
-}
 
-bool e_especial(pessoa& pes) {
-	pessoa::grupo* aux = pes;
-	return aux->especial;
-}
+
 
 void criar_nome(pessoa &pes) {
 	if (aluno(pes)) {
 		pessoa::grupo::aluno* aux = new struct pessoa::grupo::aluno();
-		pessoa::grupo* aux2 = pes;
-		string pn = random_line("primeiro_nome.txt");
-		string un = random_line("ultimo_nome.txt");
+		string pn = random_line("pr.txt");
+		string un = random_line("ul.txt");
 		aux->nome = pn + " " + un;
-		aux->seguinte = aux2->inicio;
-		aux2->inicio = aux;
+		aux->seguinte = pes.a_guardar->inicio;
+		pes.a_guardar->inicio = aux;
 	}
 	else {
 		pessoa::departamento::staff* aux = new struct pessoa::departamento::staff();
-		pessoa::departamento* aux2 = pes;
-		string pn = random_line("primeiro_nome.txt");
-		string un = random_line("ultimo_nome.txt");
+		string pn = random_line("pr.txt");
+		string un = random_line("ul.txt");
 		aux->nome = pn + " " + un;
-		aux->seguinte = aux2->inicio;
-		aux2->inicio = aux;
+		aux->seguinte = pes.d_guardar->inicio;
+		pes.d_guardar->inicio = aux;
 	}
 }
 
 void criar_numero(pessoa& pes) {
 	if (aluno(pes)) {
 		pessoa::grupo::aluno* aux = new struct pessoa::grupo::aluno();
-		pessoa::grupo* aux2 = pes;
 		aux->numero = rand() % 89000 + 10000;
-		aux->seguinte = aux2->inicio;
-		aux2->inicio = aux;
+		pes.a_guardar->inicio = aux;
 	}
 	else {
 		pessoa::departamento::staff* aux = new struct pessoa::departamento::staff();
-		pessoa::departamento aux2 = pes;
-		string pn = random_line("primeiro_nome.txt");
-		string un = random_line("ultimo_nome.txt");
 		aux->numero = rand() % 8900 + 1000;
-		aux->seguinte = aux2->inicio;
-		aux2->inicio = aux;
+		pes.d_guardar->inicio = aux;
 	}
 }
 
 void criar_plafond(pessoa& pes) {
 	if (aluno(pes)) {
 		pessoa::grupo::aluno* aux = new struct pessoa::grupo::aluno();
-		pessoa::grupo* aux2 = pes;
-		aux->plafond = (rand() % 1000 + 1) * (0.1);
-		aux->seguinte = aux2->inicio;
-		aux2->inicio = aux;
+		aux->plafond = (rand() % 1000 + 10) *0.1;
+		pes.a_guardar->inicio = aux;
 	}
 	else {
 		pessoa::departamento::staff* aux = new struct pessoa::departamento::staff();
-		pessoa::departamento* aux2 = pes;
-		aux->plafond = (rand() % 1000 + 1) * (0.1);
-		aux->seguinte = aux2->inicio;
-		aux2->inicio = aux;
+		aux->plafond = (rand() % 1000 + 10) *0.1;
+		pes.d_guardar->inicio = aux;
 	}
 }
 
 void gerar_curso(pessoa& pes) {
 	if (aluno(pes)) {
 		pessoa::grupo* aux = new struct pessoa::grupo();
-		pessoa* aux2 = pes;
-		string cuso = random_line("cursos.txt");
+		string curso = random_line("cursos.txt");
 		aux->curso = curso;
-		aux2->inicio = aux;
+		pes.a_guardar = aux;
 	}
 }
 
 void gerar_ciclos(pessoa& pes) {
 	if (aluno(pes)) {
-		pessoa::grupo* aux = pes;
-		aux->ciclos=rand()
+		pessoa::grupo* aux = pes.a_guardar;
+		aux->ciclos = rand() % 3 + 2;
+	}
+	else {
+		pessoa::departamento* aux = pes.d_guardar;
+		aux->ciclos = rand() % 3 + 2;
 	}
 }
 
@@ -201,97 +186,82 @@ void gerar_pessoa(pessoa& pes) {
 	gerar_elemen(pes);
 	gerar_curso(pes);
 	gerar_ciclos(pes);
-	for (int i = 1; i <= num_elementos(pes); i++) {
-		criar_nome(pes);
-		criar_numero(pes);
-		criar_plafond(pes);
-	}
+	criar_nome(pes);
+	criar_numero(pes);
+	criar_plafond(pes);
 }
 
 //mostrar
 string mostrar_nome(pessoa& pes) {
 	if (aluno(pes)) {
-		pessoa::grupo::aluno* aux = pes;
-		return aux->nome;
+		return pes.a_guardar->inicio->nome;
 	}
 	else {
-		pessoa::departamento::staff* aux = pes;
-		return aux->nome;
+		return pes.a_guardar->inicio->nome;
 	}
 }
 string mostrar_al_ou_stf(pessoa & pes) {
-		pessoa aux = pes;
-		return aux.aluno_ou_staff;
+		return pes.aluno_ou_staff;
 }
 
 string mostrar_curso(pessoa& pes) {
-	pessoa::grupo* aux = pes;
-	return aux->curso;
+	return pes.a_guardar->curso;
 }
 
 int mostrar_grupo(pessoa& pes) {
-	pessoa::grupo* aux = pes;
-	return aux->n_grupo;
+	return pes.a_guardar->n_grupo;
 }
 
 int mostrar_departamento(pessoa& pes) {
-	pessoa::departamento* aux = pes;
-	return aux->n_departamento;
+	return pes.d_guardar->n_departamento;
 }
 
 int mostrar_numero(pessoa &pes){
 	if (aluno(pes)) {
-		pessoa::grupo::aluno* aux = pes;
-		return aux->numero;
+		return pes.a_guardar->inicio->numero;
 	}
 	else {
-		pessoa::departamento::staff* aux = pes;
-		return aux->numero;
+		return pes.d_guardar->inicio->numero;
 	}
 }
 
 int mostrar_ciclos(pessoa& pes) {
 	if (aluno(pes)) {
-		pessoa::grupo* aux = pes;
-		return aux->ciclos;
+		return pes.a_guardar->ciclos;
 	}
 	else {
-		pessoa::departamento* aux = pes;
-		return aux->ciclos;
+		return pes.d_guardar->ciclos;
 	}
 }
 
 float mostrar_plafond(pessoa& pes) {
 	if (aluno(pes)) {
-		pessoa::grupo::aluno* aux = pes;
-		return aux->plafond;
+
+		return pes.a_guardar->inicio->plafond;
 	}
 	else {
-		pessoa::departamento::staff* aux = pes;
-		return aux->plafond;
+		return pes.d_guardar->inicio->plafond;
 	}
 }
 
 
 void mostrar_pessoa(pessoa& pes) {
-	if (p_vazia(pes)) {
+	/*if (p_vazia(pes)) {
 		cout << "ERRO: Vazio" << endl;
 	}
-	else {
+	else {*/
 		pessoa aux = pes;
 		if (aluno(pes)) {
-			pessoa::grupo::aluno* aux1 = aux;
-			while (aux1 != NULL) {
+			do{
 				cout << mostrar_nome(aux) << ", " << mostrar_al_ou_stf(aux) << ", " << mostrar_curso(aux) << ", " << mostrar_grupo(aux) << ", " << mostrar_numero(aux) << ", Duração, " << mostrar_ciclos(aux) << ", " << mostrar_plafond(aux) << endl;
-				aux1 = aux1->seguinte;
-			}
+				aux.a_guardar->inicio = aux.a_guardar->inicio->seguinte;
+			} while (aux.a_guardar->inicio != 0);
 		}
 		else {
-			pessoa::departamento::staff* aux1 = aux;
-			while (aux1 != NULL) {
+			do{
 				cout << mostrar_nome(aux) << ", " << mostrar_al_ou_stf(aux) << ", Departamento: " << mostrar_departamento(aux) << ", " << mostrar_numero(aux) << ", Duração, " << mostrar_ciclos(aux) << ", " << mostrar_plafond(aux) << endl;
-				aux1 = aux1->seguinte;
-			}
+				aux.d_guardar->inicio = aux.d_guardar->inicio->seguinte;
+			} while (aux.d_guardar->inicio != 0);
 		}
-	}
+	//}
 }

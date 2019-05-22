@@ -16,7 +16,7 @@ struct pessoa {
 			float plafond;
 			aluno* seguinte;//se especial==true, seguinte será null
 		}; aluno* inicio;
-	};
+	}; grupo* a_guardar;
 	struct departamento {//grupo do staff
 		int n_elementos;//Um departamento entre 2 a 10
 		int n_departamento;
@@ -27,7 +27,7 @@ struct pessoa {
 			float plafond;
 			staff* seguinte;
 		}; staff* inicio;
-	}; 
+	}; departamento* d_guardar;
 };
 
 void gerar_pessoa(pessoa& pes);

@@ -45,4 +45,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="pr.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="ul.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

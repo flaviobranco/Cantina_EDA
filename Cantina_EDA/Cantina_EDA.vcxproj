@@ -135,6 +135,10 @@
     <ClInclude Include="Mesa.h" />
     <ClInclude Include="Refeição.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="pr.txt" />
+    <Text Include="ul.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
