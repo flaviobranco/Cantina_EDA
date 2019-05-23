@@ -4,31 +4,34 @@ using namespace std;
 
 struct pessoa {
 	string aluno_ou_staff;// se é "Estudante" ou "Staff"
-	struct grupo {//criar grupos de alunos de uma só vez é mais eficiente
-		bool especial;//o aluno é especial?
-		int n_grupo;
-		int n_elementos; //Um grupo entre 2 a 10(exceto se especial for true, nesse caso só terá apenas 1)
-		string curso; //os grupos tem em comum o mesmo curso
-		int ciclos;
-		struct aluno {// pilha de alunos
-			string nome;
-			int numero;
-			float plafond;
-			aluno* seguinte;//se especial==true, seguinte será null
-		}; aluno* inicio;
-	}; grupo* a_guardar;
-	struct departamento {//grupo do staff
-		int n_elementos;//Um departamento entre 2 a 10
-		int n_departamento;
-		int ciclos;
-		struct staff {
-			string nome;
-			int numero;
-			float plafond;
-			staff* seguinte;
-		}; staff* inicio;
-	}; departamento* d_guardar;
+	grupo grup;
+	departamento depart;
+	pessoa* seguinte;
 };
+struct grupo {//criar grupos de alunos de uma só vez é mais eficiente
+	bool especial;//o aluno é especial?
+	int n_grupo;
+	int n_elementos; //Um grupo entre 2 a 10(exceto se especial for true, nesse caso só terá apenas 1)
+	string curso; //os grupos tem em comum o mesmo curso
+	int ciclos;
+	struct aluno {// pilha de alunos
+		string nome;
+		int numero;
+		float plafond;
+		aluno* seguinte;
+	}; aluno* inicio;
+};
+		struct departamento {//grupo do staff
+			int n_elementos;//Um departamento entre 2 a 10
+			int n_departamento;
+			int ciclos;
+			struct staff {
+				string nome;
+				int numero;
+				float plafond;
+				staff* seguinte;
+			}; staff* inicio;
+		}; 
 
 void gerar_pessoa(pessoa& pes);
 void mostrar_pessoa(pessoa& pes);

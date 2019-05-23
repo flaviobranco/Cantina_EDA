@@ -1,25 +1,21 @@
 #pragma once
 #include "aluno_staff.h"
-/*struct f_espera {
-	//pessoa f_pes;
-	f_espera* anterior;
-}; f_espera* apTopo;
+
+struct f_espera {
+	pessoa pes;
+	pessoa* inicio;
+}; 
 
 struct cantina {
-	int cant;
-	struct mesa {
-		int capacidade;
-		struct m_pes {
-//			pessoa m_pes;
-			m_pes* seguinte;
-		}; m_pes* inicio;
-		mesa* seguinte;
-	}; mesa* inicio;
+	int capacidade;
+	mesa mes;
+	mesa* inicio;
 };
 
-//fila 
-//void nova_pessoa_fila(f_espera f_esp)
-//mesa
-
-//da fila para a mesa
-//bool excesso(cantina cant, f_espera f_pes);*/
+struct mesa {
+	int n_mesa;
+	int capacidade;
+	pessoa pes;
+	pessoa* inicio;
+	mesa* seguinte;
+};

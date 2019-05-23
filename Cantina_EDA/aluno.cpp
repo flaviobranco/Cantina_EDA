@@ -56,13 +56,13 @@ void gerar_id(pessoa &pes) {
 	if (aluno(pes)) {
 		pessoa::grupo* aux = new struct pessoa::grupo();
 		aux->n_grupo = rand() % 401 + 100;
-		pes.a_guardar= aux;
+		pes.grup= aux;
 	}
 	else
 	{
 		pessoa::departamento* aux = new pessoa::departamento();
 		aux->n_departamento = rand() % 401 + 100;
-		pes.d_guardar = aux;
+		pes.depart = aux;
 	}
 }
 void especial(pessoa& pes) {

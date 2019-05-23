@@ -3,8 +3,8 @@
 #include <string>
 #include "Refeição.h"
 #include "aluno_staff.h"
-/*#include "Mesa.h"
-#include "guardar_carregar.h"*/
+#include "Mesa.h"
+//#include "guardar_carregar.h"
 #include "time.h"
 #include <locale>
 using namespace std;
@@ -22,17 +22,12 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 }
 
 
-void inicializacao(listaref &ref, /*mesa ms, f_espera f_esp,*/ pessoa &pes, int ciclo) {//Fase inicial, se não houver dados gardados
+void inicializacao(listaref &ref, cantina &ms, f_espera &f_esp, int ciclo) {//Fase inicial, se não houver dados gardados
 	ciclo += 1;
 	//alterar_refeicao(ref);
 	//mostrar_refeicao(ref);
-	gerar_pessoa(pes);
-	mostrar_pessoa(pes);
-	//nova mesa
-	//int tam_cantina = rand() % 20 + 30; //tamanho da cantina
-	//tam_cantina = rand() % 20 + 30;//http://www.cplusplus.com/forum/general/114978/ -> AeonFlux1212 ´"o rand convém ser acionado duas vezes para ter a certeza que gera um número aleatório 
-	
-	
+	//criar fila
+	gerar_fila(f_esp);
 		
 	
 }
@@ -91,10 +86,11 @@ int main() {
 	srand(time(NULL));
 	locale::global(locale(""));
 	listaref ref;
-	pessoa pes;
+	f_espera f_esp;
+	cantina ms;
 	int ciclo=0;
 	char opcao=' ';
-	inicializacao(ref,/* ms, f_esp,*/ pes,ciclo);
+	inicializacao(ref, ms, f_esp,ciclo);
 	/*while (opcao != 'x') {
 		menu(ref, ms, f_esp, pes);
 		cout << "**** Comando: ";
