@@ -4,8 +4,8 @@ using namespace std;
 
 struct pessoa {
 	string aluno_ou_staff;// se é "Estudante" ou "Staff"
-	grupo grup;
-	departamento depart;
+	grupo* grup;
+	departamento* depart;
 	pessoa* seguinte;
 };
 struct grupo {//criar grupos de alunos de uma só vez é mais eficiente
@@ -21,7 +21,7 @@ struct grupo {//criar grupos de alunos de uma só vez é mais eficiente
 		aluno* seguinte;
 	}; aluno* inicio;
 };
-		struct departamento {//grupo do staff
+struct departamento {//grupo do staff
 			int n_elementos;//Um departamento entre 2 a 10
 			int n_departamento;
 			int ciclos;
@@ -31,7 +31,7 @@ struct grupo {//criar grupos de alunos de uma só vez é mais eficiente
 				float plafond;
 				staff* seguinte;
 			}; staff* inicio;
-		}; 
+}; 
 
 void gerar_pessoa(pessoa& pes);
 void mostrar_pessoa(pessoa& pes);

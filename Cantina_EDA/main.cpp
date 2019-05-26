@@ -24,11 +24,11 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 
 void inicializacao(listaref &ref, cantina &ms, f_espera &f_esp, int ciclo) {//Fase inicial, se não houver dados gardados
 	ciclo += 1;
+	pessoa pes;
 	//alterar_refeicao(ref);
 	//mostrar_refeicao(ref);
-	//criar fila
-	gerar_fila(f_esp);
-		
+	gerar_pessoa(pes);
+	mostrar_pessoa(pes);
 	
 }
 /*void seguinte(listaref &ref, mesa ms, f_espera f_esp, pessoa pes,int ciclo){

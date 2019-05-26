@@ -1,4 +1,4 @@
-#include "Mesa.h"
+/*#include "Mesa.h"
 #include"aluno_staff.h"
 #include <iostream>
 using namespace std;
@@ -25,4 +25,4 @@ void gerar_cantina(cantina &ms) {
 }
 
 void gerar_mesa(cantina &ms)
-//de fila para a mesa
+//de fila para a mesa*/

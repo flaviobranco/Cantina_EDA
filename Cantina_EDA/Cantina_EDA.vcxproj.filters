@@ -52,5 +52,20 @@
     <Text Include="ul.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="refeição.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="cursos.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="lista_alunos_guardados.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="pessoas.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="mesas.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

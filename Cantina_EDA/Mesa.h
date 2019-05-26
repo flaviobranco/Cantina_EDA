@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include "aluno_staff.h"
 
 struct f_espera {
@@ -19,3 +19,4 @@ struct mesa {
 	pessoa* inicio;
 	mesa* seguinte;
 };
+*/

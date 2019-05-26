@@ -136,7 +136,12 @@
     <ClInclude Include="Refeição.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="cursos.txt" />
+    <Text Include="lista_alunos_guardados.txt" />
+    <Text Include="mesas.txt" />
+    <Text Include="pessoas.txt" />
     <Text Include="pr.txt" />
+    <Text Include="refeição.txt" />
     <Text Include="ul.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
