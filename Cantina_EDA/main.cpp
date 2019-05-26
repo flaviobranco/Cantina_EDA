@@ -22,7 +22,7 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 }
 
 
-void inicializacao(listaref &ref, cantina &ms, f_espera &f_esp, int ciclo) {//Fase inicial, se não houver dados gardados
+void inicializacao(listaref &ref, /*cantina &ms, f_espera &f_esp,*/ int ciclo) {//Fase inicial, se não houver dados gardados
 	ciclo += 1;
 	pessoa pes;
 	//alterar_refeicao(ref);
@@ -86,11 +86,11 @@ int main() {
 	srand(time(NULL));
 	locale::global(locale(""));
 	listaref ref;
-	f_espera f_esp;
-	cantina ms;
+	/*f_espera f_esp;
+	cantina ms;*/
 	int ciclo=0;
 	char opcao=' ';
-	inicializacao(ref, ms, f_esp,ciclo);
+	inicializacao(ref, /*ms, f_esp,*/ciclo);
 	/*while (opcao != 'x') {
 		menu(ref, ms, f_esp, pes);
 		cout << "**** Comando: ";
