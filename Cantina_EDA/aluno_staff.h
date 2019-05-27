@@ -3,7 +3,7 @@
 using namespace std;
 
 struct pessoa {
-	string aluno_ou_staff;// se é "Estudante" ou "Staff"
+	bool aluno_ou_staff;// se é "Estudante" ou "Staff"
 	struct grupo {//criar grupos de alunos de uma só vez é mais eficiente
 		bool especial;//o aluno é especial?
 		int n_grupo;

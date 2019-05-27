@@ -84,7 +84,7 @@ void menu(listaref &ref, mesa &ms, f_espera &f_esp){
 
 int main() {
 	srand(time(NULL));
-	locale::global(locale(""));
+	//locale::global(locale(""));
 	listaref ref;
 	/*f_espera f_esp;
 	cantina ms;*/

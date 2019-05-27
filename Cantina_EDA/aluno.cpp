@@ -26,7 +26,7 @@ std::string random_line(const char* path) //http://www.cplusplus.com/forum/gener
 //pessoa
 
 bool p_vazia(pessoa *pes) {
-	if (pes->aluno_ou_staff == "") {
+	if (pes->aluno_ou_staff == NULL) {
 		return true;
 	}
 	else {
@@ -36,20 +36,15 @@ bool p_vazia(pessoa *pes) {
 
 void aluno_ou_staff(pessoa *pes) {
 	if ((rand()% 100+1) <50) {
-		pes->aluno_ou_staff= "Estudante";
+		pes->aluno_ou_staff= true;//aluno
 	}
 	else {
-		pes->aluno_ou_staff = "Staff";
+		pes->aluno_ou_staff = false;//staff
 	}
 }
 
 bool aluno(pessoa *pes) {
-	if (pes->aluno_ou_staff == "Estudante") {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return pes->aluno_ou_staff;
 }
 
 void gerar_id(pessoa *pes) {
@@ -175,10 +170,8 @@ void gerar_ciclos(pessoa *pes) {
 	}
 }
 
-void gerar_pessoa(pessoa *pes) {
-	pessoa* aux = new pessoa();
-	aux->grup->inicio = NULL;
-	aux->depart->inicio = NULL;
+void gerar_pessoa(pessoa &pes) {
+	pessoa* aux = NULL;
 	aluno_ou_staff(aux);
 	especial(aux);
 	gerar_id(aux);
@@ -190,7 +183,7 @@ void gerar_pessoa(pessoa *pes) {
 		criar_numero(aux);
 		criar_plafond(aux);
 	}
-	pes->seguinte = aux;
+	pes.seguinte = aux;
 }
 
 //mostrar
@@ -203,7 +196,12 @@ string mostrar_nome(pessoa* pes) {
 	}
 }
 string mostrar_al_ou_stf(pessoa * pes) {
-		return pes->aluno_ou_staff;
+	if (aluno(pes)) {
+		return "Estudante";
+		}
+	else {
+		return "Staff";
+	}
 }
 
 string mostrar_curso(pessoa* pes) {
@@ -247,13 +245,13 @@ float mostrar_plafond(pessoa* pes) {
 }
 
 
-void mostrar_pessoa(pessoa *pes) {
-	if (p_vazia(pes)) {
+void mostrar_pessoa(pessoa &pes) {
+	if (p_vazia(pes.seguinte)) {
 		cout << "ERRO: Vazio" << endl;
 	}
 	else {
-		pessoa* aux = pes;
-		if (aluno(pes)) {
+		pessoa* aux = pes.seguinte;
+		if (aluno(aux)) {
 			do{
 				cout << mostrar_nome(aux) << ", " << mostrar_al_ou_stf(aux) << ", " << mostrar_curso(aux) << ", " << mostrar_grupo(aux) << ", " << mostrar_numero(aux) << ", Duração, " << mostrar_ciclos(aux) << ", " << mostrar_plafond(aux) << endl;
 				aux->grup->inicio= aux->grup->inicio->seguinte;
