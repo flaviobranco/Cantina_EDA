@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 #include "Refeição.h"
-#include "aluno_staff.h"
 #include "Mesa.h"
+#include "pessoa_cantina.h"
 //#include "guardar_carregar.h"
 #include "time.h"
 #include <locale>
@@ -22,21 +22,7 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 }
 
 
-void inicializacao(listaref &ref, /*cantina &ms, f_espera &f_esp,*/ int ciclo) {//Fase inicial, se não houver dados gardados
-	ciclo += 1;
-	pessoa pes;
-	//alterar_refeicao(ref);
-	//mostrar_refeicao(ref);
-	gerar_pessoa(pes);
-	mostrar_pessoa(pes);
-	
-}
-/*void seguinte(listaref &ref, mesa ms, f_espera f_esp, pessoa pes,int ciclo){
-	ciclo += 1;
-	if (ciclo % 10 == 0) {
-		alterar_refeicao(ref);
-	}
-}
+/*
 void emergencia(mesa ms,pessoa pes){
 
 }
@@ -83,14 +69,66 @@ void menu(listaref &ref, mesa &ms, f_espera &f_esp){
 
 
 int main() {
-	srand(time(NULL));
-	//locale::global(locale(""));
+	srand(time(0));
+
 	listaref ref;
-	/*f_espera f_esp;
-	cantina ms;*/
+	
+	
 	int ciclo=0;
 	char opcao=' ';
-	inicializacao(ref, /*ms, f_esp,*/ciclo);
+
+
+	pessoa_cantina* fila_espera = NULL;
+	mesa* cantina = NULL;
+	cantina = cria_mesas();
+	//criar primeiro grupo
+	fila_espera = cria_grupo();
+
+	for (int i = 0; i <= 9; i++) {
+		pessoa_cantina* novo_grupo = cria_grupo();
+		pessoa_cantina* aux = fila_espera;
+		while(aux->seguinte != NULL) {
+			aux = aux->seguinte;
+		}
+		aux->seguinte = novo_grupo;
+	}
+
+	pessoa_cantina* aux = fila_espera;
+	while (aux != NULL) {
+		cout << aux->pnome << aux->n_grup;
+
+		if (aux->staff_ou_grupo)
+			cout << " STAFF" << endl;
+		else
+			cout << "  ESTUDANTE" << endl;
+
+		aux = aux->seguinte;
+	}
+	fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
+	mesa* mesa_aux = cantina;
+	while (mesa_aux != NULL) {
+		cout << "Mesa: " << mesa_aux->n_mesa << endl;
+		pessoa_cantina* ocupante_aux = mesa_aux->ocupantes;
+		while (ocupante_aux != NULL) {
+			cout << ocupante_aux->pnome << "  " << ocupante_aux->n_grup << endl;
+			ocupante_aux = ocupante_aux->seguinte;
+		}
+		mesa_aux=mesa_aux->seguinte;
+	}
+
+	aux = fila_espera;
+	while (aux != NULL) {
+		cout << aux->pnome << aux->n_grup;
+
+		if (aux->staff_ou_grupo)
+			cout << " STAFF" << endl;
+		else
+			cout << "  ESTUDANTE" << endl;
+
+		aux = aux->seguinte;
+	}
+	//colocar noutra função
+	
 	/*while (opcao != 'x') {
 		menu(ref, ms, f_esp, pes);
 		cout << "**** Comando: ";

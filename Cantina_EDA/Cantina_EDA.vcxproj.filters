@@ -24,10 +24,10 @@
     <ClCompile Include="mesa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aluno.cpp">
+    <ClCompile Include="guardar_carregar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="guardar_carregar.cpp">
+    <ClCompile Include="pessoa_cantina.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +38,10 @@
     <ClInclude Include="Mesa.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="aluno_staff.h">
+    <ClInclude Include="guardar_carregar.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="guardar_carregar.h">
+    <ClInclude Include="pessoa_cantina.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

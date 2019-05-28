@@ -1,22 +1,15 @@
-/*#pragma once
-#include "aluno_staff.h"
-
-struct f_espera {
-	pessoa pes;
-	pessoa* inicio;
-}; 
-
-struct cantina {
-	int capacidade;
-	mesa mes;
-	mesa* inicio;
-};
+#ifndef MESA_H
+#define MESA_H
+#include "pessoa_cantina.h"
 
 struct mesa {
 	int n_mesa;
 	int capacidade;
-	pessoa pes;
-	pessoa* inicio;
+	int n_vagas;
+	pessoa_cantina* ocupantes;
 	mesa* seguinte;
 };
-*/
+
+mesa* cria_mesas();
+pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila);
+#endif
