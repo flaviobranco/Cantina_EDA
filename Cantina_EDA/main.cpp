@@ -21,21 +21,60 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 	cout << s;
 }
 
+void mostrar_mesa(mesa* cantina) {
+	mesa* mesa_aux = cantina;
+	while (mesa_aux != NULL) {
+		cout << "Mesa " << mesa_aux->n_mesa <<" (CAPACIDADE: "<<mesa_aux->capacidade<<"):"<<endl;
+		pessoa_cantina* ocupante_aux = mesa_aux->ocupantes;
+		while (ocupante_aux != NULL) {
+			cout << ocupante_aux->pnome;
+			if (ocupante_aux->staff_ou_grupo) {
+				cout << ", STAFF, Departamento: ";
+			}
+			else {
+				cout << ",  ESTUDANTE, " << ocupante_aux->curso << ", Grupo: ";
+			}
+			cout << ocupante_aux->n_grup;
+			cout << "," << ocupante_aux->numero;
+			cout << " (Ciclos restantes: " << ocupante_aux->ciclos << ")" << endl;
+			ocupante_aux = ocupante_aux->seguinte;
+		}
+		mesa_aux = mesa_aux->seguinte;
+	}
+}
+
+void mostrar_fila(pessoa_cantina*fila_espera) {
+	cout << "Fila de espera: " << endl;
+	pessoa_cantina* aux = fila_espera;
+	while (aux != NULL) {
+		cout << aux->pnome;
+		if (aux->staff_ou_grupo) {
+			cout << ", STAFF, Departamento: ";
+		}
+		else {
+			cout << ",  ESTUDANTE, " << aux->curso << ", Grupo ";
+		}
+		cout << aux->n_grup << ",";
+		cout << aux->numero;
+		cout << " (Ciclos restantes: " << aux->ciclos << ")" << endl;
+		aux = aux->seguinte;
+	}
+}
 
 /*
-void emergencia(mesa ms,pessoa pes){
+void emergencia(){
 
 }
-void extrair(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes, int ciclo){
+void extrair(){
 
 }
-void guardar(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes, int ciclo) {
+void guardar() {
 
 }
-void carregar(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes, int ciclo) {
+void carregar() {
 
 }
-void opcoes(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes) {
+void opcoes(refeicao  *ref, mesa  *ms, f_espera  *f_esp) {
 	char opcao;
 	cout << "1-Mostrar todas as pessoas \n";
 	cout << "4-Adicionar plafond\n";
@@ -53,7 +92,7 @@ void opcoes(refeicao  ref, mesa  ms, f_espera  f_esp, pessoa  pes) {
 	}
 	}
 
-void menu(listaref &ref, mesa &ms, f_espera &f_esp){
+void menu(listaref &ref, mesa *ms, f_espera *f_esp){
 	/*centerstring("Cantina EDA");
 	cout << endl;
 	cout << "(s)Seguinte (e)Emergência (g)Gravar (c)Carregar Dados (o)Opções (x)Sair" << endl;
@@ -72,62 +111,35 @@ int main() {
 	srand(time(0));
 
 	listaref ref;
-	
-	
-	int ciclo=0;
-	char opcao=' ';
+
+
+	int ciclo = 0;
+	char opcao = ' ';
 
 
 	pessoa_cantina* fila_espera = NULL;
 	mesa* cantina = NULL;
+	//criar mesas
 	cantina = cria_mesas();
 	//criar primeiro grupo
 	fila_espera = cria_grupo();
-
+	//criar multiplos grupos e por na fila de espera
 	for (int i = 0; i <= 9; i++) {
 		pessoa_cantina* novo_grupo = cria_grupo();
 		pessoa_cantina* aux = fila_espera;
-		while(aux->seguinte != NULL) {
+		while (aux->seguinte != NULL) {
 			aux = aux->seguinte;
 		}
 		aux->seguinte = novo_grupo;
 	}
 
-	pessoa_cantina* aux = fila_espera;
-	while (aux != NULL) {
-		cout << aux->pnome << aux->n_grup;
-
-		if (aux->staff_ou_grupo)
-			cout << " STAFF" << endl;
-		else
-			cout << "  ESTUDANTE" << endl;
-
-		aux = aux->seguinte;
-	}
-	fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
-	mesa* mesa_aux = cantina;
-	while (mesa_aux != NULL) {
-		cout << "Mesa: " << mesa_aux->n_mesa << endl;
-		pessoa_cantina* ocupante_aux = mesa_aux->ocupantes;
-		while (ocupante_aux != NULL) {
-			cout << ocupante_aux->pnome << "  " << ocupante_aux->n_grup << endl;
-			ocupante_aux = ocupante_aux->seguinte;
-		}
-		mesa_aux=mesa_aux->seguinte;
+	int vezes_p_colocar_pessoa_mesa = cantina->n_mesas;
+	for (int i = 1; i <= vezes_p_colocar_pessoa_mesa; i++) {
+		fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
 	}
 
-	aux = fila_espera;
-	while (aux != NULL) {
-		cout << aux->pnome << aux->n_grup;
-
-		if (aux->staff_ou_grupo)
-			cout << " STAFF" << endl;
-		else
-			cout << "  ESTUDANTE" << endl;
-
-		aux = aux->seguinte;
-	}
-	//colocar noutra função
+	mostrar_mesa(cantina);
+	mostrar_fila(fila_espera);
 	
 	/*while (opcao != 'x') {
 		menu(ref, ms, f_esp, pes);

@@ -3,6 +3,7 @@
 #include "pessoa_cantina.h"
 
 struct mesa {
+	int n_mesas;
 	int n_mesa;
 	int capacidade;
 	int n_vagas;

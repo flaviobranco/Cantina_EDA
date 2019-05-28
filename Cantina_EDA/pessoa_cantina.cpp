@@ -46,6 +46,7 @@ pessoa_cantina* cria_grupo() {
 		nova->plafond = (rand() % 1000 + 10) * 0.1;
 		nova->numero = numero;
 		nova->n_grup = n_grupo;
+		nova->ciclos = ciclos;
 		if (grupo == NULL){
 			grupo = nova;
 			nova->seguinte = NULL;
