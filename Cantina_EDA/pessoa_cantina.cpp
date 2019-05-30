@@ -72,26 +72,29 @@ pessoa_cantina* cria_grupo() {
 pessoa_cantina* remover_low_plafond(pessoa_cantina* fila, listaref refeicao) {
 	pessoa_cantina* aux = fila;
 	float preco = refeicao.actual->preco;
+	float preco_fila;
 	while (aux != NULL) {
-		if (aux->plafond < preco || aux->seguinte != NULL) {
+		preco_fila = aux->plafond;
+		if (preco_fila < preco) {
 			//char opcao=NULL;
 			//cout << "Umapessoa da fila não pussui o plafond suficiente para a refeiçao. O que quer fazer?" << endl << "1-Remover só a pessoa" << endl << "2-Remover o grupo" << endl;
 			//cin >> opcao;
 			//remover um elemento
-			cout << "plafond baixo detetado, aremover elemento" << endl;
-			int id = aux->seguinte->numero;
-			pessoa_cantina* aux2 = fila;
-			while (aux2 != NULL && aux2->numero != id) {
+			pessoa_cantina* aux2 = aux;
+			while (preco_fila < preco && aux2 != NULL) {
 				aux2 = aux2->seguinte;
+				preco_fila = aux2->plafond;
 			}
-			if (aux2->numero == id) {
-				if (aux2->seguinte == NULL) {
-					aux->seguinte = NULL;
-				}
-				else {
-					aux->seguinte = aux2->seguinte;
-					aux = fila;
-				}
+			cout << "Plafond baixo detetado, remover elemento" << endl;
+			if (aux2 == NULL) {
+				aux = NULL;
+			}
+			else if(aux2->seguinte==NULL){
+				aux = aux2;
+			}
+			else {
+				aux->seguinte = aux2;
+				aux = aux->seguinte;
 			}
 		}
 		aux = aux->seguinte;
@@ -99,19 +102,16 @@ pessoa_cantina* remover_low_plafond(pessoa_cantina* fila, listaref refeicao) {
 	return fila;
 }
 
-pessoa_cantina* sort_especial(pessoa_cantina* fila) {
+/*pessoa_cantina* sort_especial(pessoa_cantina* fila) {
 	pessoa_cantina* aux = fila;
 	while (aux != NULL) {
-		if (aux->especial&&(!aux->seguinte->especial||aux->seguinte==NULL)) {
-			pessoa_cantina* aux2 = aux;
-			aux2->seguinte = fila;
-			fila = aux2;
-			aux = fila;
+		if (aux->especial)) {
+
 		}
 		aux = aux->seguinte;
 	}
 	return fila;
-}
+}*/
 
 	
 

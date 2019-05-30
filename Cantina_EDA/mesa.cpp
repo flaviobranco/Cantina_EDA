@@ -43,7 +43,7 @@ pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila) {
 	mesa* aux_m = mesas;
 	pessoa_cantina* aux1 = fila;
 	string curso_mesa = "";//"nulo" se não houver alunos na mesa
-	string curso_fila = "";//"nulo" se não houver alunos nas primeiras pessoas
+	string curso_fila = "";//"nulo" se não houver alunos nas primeiras pessoas da fila
 	while (aux_m != NULL)
 	{
 		if (aux_m->n_vagas >0) {//se houver vagas
@@ -69,11 +69,14 @@ pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila) {
 				aux1 = fila;
 				if (curso_fila == curso_mesa || curso_mesa == "" || curso_fila=="") { //o primeiro é aluno ou staff? , se é aluno, só entra se tiverem o mesmo curso ou se o curso_mesa ou curso_fila for string vazia
 					aux_m->n_vagas -= 1;//tirar o primeiro
-					while (aux1 != NULL && aux1->seguinte != NULL &&( (aux1->seguinte->curso == curso_fila) || aux1->seguinte->staff_ou_grupo) && aux_m->n_vagas >0) {// verifica: fila vazia ou não E( se o aluno da fila é do mesmo curso do primeiro ou se é staff) E vagas ocupadas 
+					while (aux1 != NULL &&( (aux1->seguinte->curso == curso_fila) || aux1->seguinte->staff_ou_grupo) && aux_m->n_vagas >0) {// verifica: fila vazia ou não E( se o aluno da fila é do mesmo curso do primeiro OU se é staff) E vagas ocupadas 
 						aux_m->n_vagas -= 1;//tirar os seguintes
 						aux1 = aux1->seguinte;
 					}
 					pessoa_cantina* aux2 = fila;
+					if(aux1==NULL){
+						fila = NULL;
+					}
 					if (aux1->seguinte == NULL) {
 						fila = aux1;
 						aux1 = NULL;// tirar pessoas da fila

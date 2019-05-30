@@ -59,13 +59,38 @@ void mostrar_fila(pessoa_cantina*fila_espera) {
 		cout << " (Ciclos restantes: " << aux->ciclos << ")";
 		cout << ", Plafond: " << aux->plafond<<endl;
 		if (aux->especial) {
-			cout << "[ESPEIAL]" << endl;
+			cout << "[ESPECIAL]" << endl;
 		}
 		aux = aux->seguinte;
 	}
 }
 
+mesa* ms_seguinte(mesa* ms) {
+	mesa* aux1 = ms;
+	while (aux1 != NULL) {
+		pessoa_cantina* aux2 = aux1->ocupantes;
+		while (aux2 != NULL) {
+			aux2->ciclos = aux2->ciclos-1;
+			if (aux2->ciclos = 0) {
+				aux1->ocupantes
+			}
+			aux2 = aux2->seguinte;
+		}
+		aux1 = aux1->seguinte;
+	}
+	return ms;
+}
+
+void seguinte(listaref ref, mesa* cantina, pessoa_cantina* fesp, int ciclo) {
+	if (ciclo % 10 == 0) {
+		alterar_refeicao(ref);
+	}
+	//ms_seguinte(cantina);
+	fesp = coloca_pessoa_mesa(cantina, fesp);
+}
+
 /*
+
 void emergencia(){
 
 }
@@ -117,9 +142,8 @@ int main() {
 	listaref ref;
 
 	alterar_refeicao(ref);
-	int ciclo = 0;
 	char opcao = ' ';
-
+	int ciclo = 0;
 
 	pessoa_cantina* fila_espera = NULL;
 	mesa* cantina = NULL;
@@ -139,7 +163,7 @@ int main() {
 	//verificar se tem plafond
 	remover_low_plafond(fila_espera, ref);
 
-	mostrar_fila(fila_espera);
+	//mostrar_fila(fila_espera);
 
 	//int vezes_p_colocar_pessoa_mesa = cantina->n_mesas;
 	fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
@@ -154,7 +178,8 @@ int main() {
 		cout << endl;
 			switch (opcao) {
 			case 's': {
-				//seguinte(ref,ms,f_esp,pes,ciclo);
+				ciclo++;
+				seguinte(ref,cantina,fila_espera,ciclo);
 				break;
 			}
 			case'e': {
