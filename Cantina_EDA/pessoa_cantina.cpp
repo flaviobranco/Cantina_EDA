@@ -29,6 +29,10 @@ pessoa_cantina* cria_grupo() {
 	if (rand() % 10 < 5) {
 		tipo = true;
 	}
+	bool especial = false;
+	if (!tipo&&rand() % 100 < 5) {
+		especial = true;
+	}
 	pessoa_cantina* grupo = NULL;
 
 	for (int i = 0; i < n_elementos; i++) {
@@ -37,6 +41,9 @@ pessoa_cantina* cria_grupo() {
 		string pn = random_line("pr.txt");
 		string un = random_line("ul.txt");
 		long numero = rand() % 89000 + 10000;
+		if (tipo) {
+			numero = rand() % 8900 + 1000;
+		}
 		nova->staff_ou_grupo = tipo;
 		if (!tipo) {
 			nova->curso = curso;
@@ -57,4 +64,21 @@ pessoa_cantina* cria_grupo() {
 		}
 	}
 	return grupo;
+}
+
+pessoa_cantina* sort_especial(pessoa_cantina* f_esp) {
+	pessoa_cantina* aux1 = f_esp;
+	pessoa_cantina* aux2 = new struct pessoa_cantina;
+	while (aux1&&aux2 != NULL) {
+		if (aux1->especial) {
+			aux2 = aux1;
+		}
+		aux1 = aux1->seguinte;
+		if (aux1 == NULL && aux2 != NULL) {
+			aux1 = aux2;
+		}
+		if (aux1->seguinte == NULL && aux2 != NULL) {
+			aux1->seguinte = aux1;
+		}
+	}
 }

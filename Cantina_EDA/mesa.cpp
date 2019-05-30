@@ -4,6 +4,7 @@
 using namespace std;
 
 mesa* cria_mesas() {
+	int cap_cantina = rand() % 20 + 30;
 	int n_mesas = 10;//alterar para rand
 	mesa* primeira_mesa = NULL;
 	for (int i = n_mesas; i >=1; i--) {

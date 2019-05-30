@@ -13,6 +13,7 @@ struct pessoa_cantina {
 	int n_grup;
 	int ciclos;
 	bool staff_ou_grupo;
+	bool especial;
 	pessoa_cantina* seguinte;
 };
 
