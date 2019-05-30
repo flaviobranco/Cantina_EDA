@@ -56,7 +56,8 @@ void mostrar_fila(pessoa_cantina*fila_espera) {
 		}
 		cout << aux->n_grup << ",";
 		cout << aux->numero;
-		cout << " (Ciclos restantes: " << aux->ciclos << ")" << endl;
+		cout << " (Ciclos restantes: " << aux->ciclos << ")";
+		cout << ", Plafond: " << aux->plafond<<endl;
 		aux = aux->seguinte;
 	}
 }
@@ -91,20 +92,20 @@ void opcoes(refeicao  *ref, mesa  *ms, f_espera  *f_esp) {
 		cout << "Opção inválida" << endl;
 	}
 	}
-
-void menu(listaref &ref, mesa *ms, f_espera *f_esp){
-	/*centerstring("Cantina EDA");
+*/
+void menu(listaref &ref, mesa *ms, pessoa_cantina *f_esp){
+	centerstring("Cantina EDA");
 	cout << endl;
 	cout << "(s)Seguinte (e)Emergência (g)Gravar (c)Carregar Dados (o)Opções (x)Sair" << endl;
 	cout << endl;
 	mostrar_refeicao (ref);
 	cout << endl;
-	mostrar_mesas(ms);
+	mostrar_mesa(ms);
 	cout << endl;
-	mostrar_fila_espera(f_esp);
+	mostrar_fila(f_esp);
 	cout << endl;
 
-}*/
+}
 
 
 int main() {
@@ -112,7 +113,7 @@ int main() {
 
 	listaref ref;
 
-
+	alterar_refeicao(ref);
 	int ciclo = 0;
 	char opcao = ' ';
 
@@ -133,39 +134,37 @@ int main() {
 		aux->seguinte = novo_grupo;
 	}
 
-	int vezes_p_colocar_pessoa_mesa = cantina->n_mesas;
-	for (int i = 1; i <= vezes_p_colocar_pessoa_mesa; i++) {
-		fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
-	}
+	//int vezes_p_colocar_pessoa_mesa = cantina->n_mesas;
+	fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
 
 	mostrar_mesa(cantina);
 	mostrar_fila(fila_espera);
 	
-	/*while (opcao != 'x') {
-		menu(ref, ms, f_esp, pes);
+	while (opcao != 'x') {
+		menu(ref, cantina,fila_espera);
 		cout << "**** Comando: ";
 		cin >> opcao;
 		cout << endl;
 		if (opcao != 'x') {
 			switch (opcao) {
 			case 's': {
-				seguinte(ref,ms,f_esp,pes,ciclo);
+				//seguinte(ref,ms,f_esp,pes,ciclo);
 				break;
 			}
 			case'e': {
-				emergencia(ms, pes);
+				//emergencia(ms, pes);
 				break;
 			}
 			case'g': {
-				guardar(ref, ms, f_esp, pes, ciclo);
+				//guardar(ref, ms, f_esp, pes, ciclo);
 				break;
 			}
 			case'c': {
-				carregar(ref, ms, f_esp, pes, ciclo);
+				//carregar(ref, ms, f_esp, pes, ciclo);
 				break;
 			}
 			case'o': {
-				opcoes(ref, ms, f_esp, pes);
+				//opcoes(ref, ms, f_esp, pes);
 				break;
 			}
 			case'x': {
@@ -177,6 +176,6 @@ int main() {
 			}
 			}
 		}
-	};*/
+	};
 	return 0;
 }

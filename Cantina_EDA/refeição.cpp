@@ -17,6 +17,7 @@ void novarefeicao(listaref &lista, string entrada, string prato, float preco) {
 void alterar_refeicao (struct listaref &lista) {
 	cin.clear();//
 	cin.seekg(0, std::ios::beg);// reset do getline, from Philip Nicoletti ->http://forums.codeguru.com/showthread.php?320724-how-to-reset-quot-getline(File-string)-quot
+	cout << "A cantina EDA precisa de uma nova refeição" << endl;
 	string entrada;
 	string prato;
 	float preço;

@@ -21,7 +21,7 @@ std::string random_line(string path) //http://www.cplusplus.com/forum/general/11
 
 
 pessoa_cantina* cria_grupo() {
-	int n_elementos = rand() % 8 + 2;
+	int n_elementos = rand() % 9 + 1;
 	int n_grupo = rand() % 401 + 100;
 	int ciclos = rand()%3 + 2;
 	string curso= random_line("cursos.txt");
@@ -34,7 +34,9 @@ pessoa_cantina* cria_grupo() {
 		especial = true;
 	}
 	pessoa_cantina* grupo = NULL;
-
+	if (especial) {
+		n_elementos = 1;
+	}
 	for (int i = 0; i < n_elementos; i++) {
 		//primeiro criar a pessoa
 		pessoa_cantina* nova = new pessoa_cantina;
@@ -66,19 +68,28 @@ pessoa_cantina* cria_grupo() {
 	return grupo;
 }
 
-pessoa_cantina* sort_especial(pessoa_cantina* f_esp) {
+/*pessoa_cantina* por_especial_primeiro(pessoa_cantina* f_esp) {
 	pessoa_cantina* aux1 = f_esp;
 	pessoa_cantina* aux2 = new struct pessoa_cantina;
+	pessoa_cantina* aux3 = new struct pessoa_cantina;
 	while (aux1&&aux2 != NULL) {
-		if (aux1->especial) {
-			aux2 = aux1;
+		if (aux1->seguinte->especial) { //se o grupo for especial, guarda esse grupo
+			aux2 = aux1->seguinte;
 		}
-		aux1 = aux1->seguinte;
+		if (aux1->seguinte == NULL && aux2 != NULL) {//se o aux1 não for NULL(não ser o primeiro) mas o seguinte for, passar este para o seguinte e continuar até chegar ao primeiro
+			aux1->seguinte = aux1;
+			aux1 = f_esp;
+		}
 		if (aux1 == NULL && aux2 != NULL) {
 			aux1 = aux2;
 		}
-		if (aux1->seguinte == NULL && aux2 != NULL) {
-			aux1->seguinte = aux1;
-		}
+		else
+		aux1 = aux1->seguinte;
 	}
 }
+
+void sort_especial(pessoa_cantina* f_esp) {
+	pessoa_cantina* aux1 = f_esp;
+	pessoa_cantina* aux3 = new struct pessoa_cantina;
+
+}*/
