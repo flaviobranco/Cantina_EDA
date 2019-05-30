@@ -2,6 +2,7 @@
 #define PESSOA_CANTINA_H
 #include <string>
 #include <iostream>
+#include"Refeição.h"
 using namespace std;
 
 struct pessoa_cantina {
@@ -18,5 +19,6 @@ struct pessoa_cantina {
 };
 
 pessoa_cantina* cria_grupo();
+pessoa_cantina* remover_low_plafond(pessoa_cantina* fila, listaref refeicao);
 
 #endif

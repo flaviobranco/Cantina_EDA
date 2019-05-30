@@ -36,7 +36,7 @@ void mostrar_mesa(mesa* cantina) {
 			}
 			cout << ocupante_aux->n_grup;
 			cout << "," << ocupante_aux->numero;
-			cout << " (Ciclos restantes: " << ocupante_aux->ciclos << ")" << endl;
+			cout << " (Ciclos: " << ocupante_aux->ciclos << ")" << endl;
 			ocupante_aux = ocupante_aux->seguinte;
 		}
 		mesa_aux = mesa_aux->seguinte;
@@ -58,6 +58,9 @@ void mostrar_fila(pessoa_cantina*fila_espera) {
 		cout << aux->numero;
 		cout << " (Ciclos restantes: " << aux->ciclos << ")";
 		cout << ", Plafond: " << aux->plafond<<endl;
+		if (aux->especial) {
+			cout << "[ESPEIAL]" << endl;
+		}
 		aux = aux->seguinte;
 	}
 }
@@ -133,6 +136,10 @@ int main() {
 		}
 		aux->seguinte = novo_grupo;
 	}
+	//verificar se tem plafond
+	remover_low_plafond(fila_espera, ref);
+
+	mostrar_fila(fila_espera);
 
 	//int vezes_p_colocar_pessoa_mesa = cantina->n_mesas;
 	fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
@@ -145,7 +152,6 @@ int main() {
 		cout << "**** Comando: ";
 		cin >> opcao;
 		cout << endl;
-		if (opcao != 'x') {
 			switch (opcao) {
 			case 's': {
 				//seguinte(ref,ms,f_esp,pes,ciclo);
@@ -168,12 +174,11 @@ int main() {
 				break;
 			}
 			case'x': {
-				cout << "Obrigado por usar o programa. A sair do programa..." << endl;
+				cout << "Obrigado por usar o programa :^) ." << endl;
 				break;
 			}
 			default: {
 				cout << "Escolha uma opção válida." << endl;
-			}
 			}
 		}
 	};

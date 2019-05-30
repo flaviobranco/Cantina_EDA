@@ -1,4 +1,5 @@
 #include "pessoa_cantina.h"
+#include"Refeição.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -30,7 +31,7 @@ pessoa_cantina* cria_grupo() {
 		tipo = true;
 	}
 	bool especial = false;
-	if (!tipo&&rand() % 100 < 5) {
+	if (!tipo&&rand() % 100+ 1<= 5) {
 		especial = true;
 	}
 	pessoa_cantina* grupo = NULL;
@@ -67,6 +68,53 @@ pessoa_cantina* cria_grupo() {
 	}
 	return grupo;
 }
+
+pessoa_cantina* remover_low_plafond(pessoa_cantina* fila, listaref refeicao) {
+	pessoa_cantina* aux = fila;
+	float preco = refeicao.actual->preco;
+	while (aux != NULL) {
+		if (aux->plafond < preco || aux->seguinte != NULL) {
+			//char opcao=NULL;
+			//cout << "Umapessoa da fila não pussui o plafond suficiente para a refeiçao. O que quer fazer?" << endl << "1-Remover só a pessoa" << endl << "2-Remover o grupo" << endl;
+			//cin >> opcao;
+			//remover um elemento
+			cout << "plafond baixo detetado, aremover elemento" << endl;
+			int id = aux->seguinte->numero;
+			pessoa_cantina* aux2 = fila;
+			while (aux2 != NULL && aux2->numero != id) {
+				aux2 = aux2->seguinte;
+			}
+			if (aux2->numero == id) {
+				if (aux2->seguinte == NULL) {
+					aux->seguinte = NULL;
+				}
+				else {
+					aux->seguinte = aux2->seguinte;
+					aux = fila;
+				}
+			}
+		}
+		aux = aux->seguinte;
+	}
+	return fila;
+}
+
+pessoa_cantina* sort_especial(pessoa_cantina* fila) {
+	pessoa_cantina* aux = fila;
+	while (aux != NULL) {
+		if (aux->especial&&(!aux->seguinte->especial||aux->seguinte==NULL)) {
+			pessoa_cantina* aux2 = aux;
+			aux2->seguinte = fila;
+			fila = aux2;
+			aux = fila;
+		}
+		aux = aux->seguinte;
+	}
+	return fila;
+}
+
+	
+
 
 /*pessoa_cantina* por_especial_primeiro(pessoa_cantina* f_esp) {
 	pessoa_cantina* aux1 = f_esp;

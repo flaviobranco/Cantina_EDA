@@ -74,8 +74,14 @@ pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila) {
 						aux1 = aux1->seguinte;
 					}
 					pessoa_cantina* aux2 = fila;
-					fila = aux1->seguinte;
-					aux1->seguinte = NULL;// tirar pessoas da fila
+					if (aux1->seguinte == NULL) {
+						fila = aux1;
+						aux1 = NULL;// tirar pessoas da fila
+					}
+					else {
+						fila = aux1->seguinte;
+						aux1->seguinte = NULL;
+					}
 					if (aux_m->ocupantes == NULL) {
 						aux_m->ocupantes = aux2;
 					}
