@@ -104,6 +104,7 @@ int main() {
 	srand(time(0));
 
 	listaref ref;
+	ref.actual = NULL;
 
 	alterar_refeicao(ref);
 	char opcao = ' ';
