@@ -74,6 +74,7 @@ pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila) {
 							}
 							else if (aux_mciclo->seguinte == NULL) {
 								aux_m->ocupantes = aux_mciclo;
+								aux_mciclo = NULL;
 							}
 							else {
 								aux_m->ocupantes = aux_mciclo->seguinte;

@@ -107,7 +107,7 @@ int main() {
 
 	alterar_refeicao(ref);
 	char opcao = ' ';
-	int ciclo = 0;
+	int ciclo = 1;
 
 	pessoa_cantina* fila_espera = NULL;
 	mesa* cantina = NULL;
@@ -147,13 +147,14 @@ int main() {
 	fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
 	
 	while (opcao != 'x') {
+		
 		menu(ref, cantina,fila_espera);
 		cout << "**** Comando: ";
 		cin >> opcao;
 		cout << endl;
 			switch (opcao) {
 			case 's': {
-				ciclo++;
+				ciclo+=1;
 				if (ciclo % 10 == 0) {
 					alterar_refeicao(ref);
 				}
