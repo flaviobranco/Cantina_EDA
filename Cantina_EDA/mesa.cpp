@@ -61,8 +61,8 @@ pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila) {
 				aux_moa = aux_m->ocupantes;
 				while (aux_m->ocupantes != NULL) {
 					if (aux_m->ocupantes->ciclos == 0) {
-						pessoa_cantina* aux_mciclo = aux_m->ocupantes;
-						if (aux_mciclo->seguinte == NULL) {
+						pessoa_cantina* aux_mciclo = aux_m->ocupantes->seguinte;
+						if (aux_mciclo == NULL) {
 							aux_m->ocupantes = NULL;
 						}
 						else {

@@ -22,6 +22,7 @@ std::string random_line(string path) //http://www.cplusplus.com/forum/general/11
 
 
 pessoa_cantina* cria_grupo() {
+	//criar grupo
 	int n_elementos = rand() % 9 + 1;
 	int n_grupo = rand() % 401 + 100;
 	int ciclos = rand()%3+2;
@@ -39,7 +40,7 @@ pessoa_cantina* cria_grupo() {
 		n_elementos = 1;
 	}
 	for (int i = 0; i < n_elementos; i++) {
-		//primeiro criar a pessoa
+		// criar a(s) pessoa(s)
 		pessoa_cantina* nova = new pessoa_cantina;
 		string pn = random_line("pr.txt");
 		string un = random_line("ul.txt");
@@ -54,9 +55,11 @@ pessoa_cantina* cria_grupo() {
 		else {
 			nova->curso = "";
 		}
+		double plafond;
+		plafond = (rand() % 1000 + 10) * 0.1;
 		nova->pnome = pn;
 		nova->unome = un;
-		nova->plafond = (rand() % 1000 + 10) * 0.1;
+		nova->plafond = plafond;
 		nova->numero = numero;
 		nova->n_grup = n_grupo;
 		nova->ciclos = ciclos;

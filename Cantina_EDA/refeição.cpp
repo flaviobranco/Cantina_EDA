@@ -4,14 +4,14 @@
 #include "Refeição.h"
 using namespace std;
 
-void novarefeicao(listaref &lista, string entrada, string prato, float preco) {
+/*void novarefeicao(listaref &lista, string entrada, string prato, float preco) {
 	listaref::refeicao* novarefeicao = new listaref::refeicao();
 	novarefeicao->entrada = entrada;
 	novarefeicao->prato = prato;
 	novarefeicao->preco = preco;
-	novarefeicao->anterior = lista.actual;
+	novarefeicao->anterior = lista.actual;//passar a lista atual para a anterior
 	lista.actual = novarefeicao;
-}
+}*/
 
 
 void alterar_refeicao (struct listaref &lista) {
@@ -31,7 +31,7 @@ void alterar_refeicao (struct listaref &lista) {
 	novarefeicao->entrada = entrada;
 	novarefeicao->prato = prato;
 	novarefeicao->preco = preco;
-	novarefeicao->anterior = lista.actual;
+	novarefeicao->anterior = lista.actual;//passar a lista atual para a anterior
 	lista.actual = novarefeicao;
 	//novarefeicao(lista, entrada, prato, preço);
 }
@@ -41,7 +41,7 @@ void mostrar_refeicao (struct listaref &lista) {
 	cout << "Refeição atual: \n";
 	cout << "\t Entrada: " <<ref->entrada << endl;
 	cout << "\t Prato: " <<ref->prato << endl;
-	cout << "\t Preço: " <<ref->preco  <<"€"<< endl;
+	cout << "\t Preço: " <<ref->preco  <<"euros"<< endl;
 }
 
 

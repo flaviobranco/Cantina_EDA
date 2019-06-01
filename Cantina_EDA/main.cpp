@@ -96,13 +96,12 @@ void menu(listaref &ref, mesa *ms, pessoa_cantina *f_esp){
 	cout << endl;
 	mostrar_fila(f_esp);
 	cout << endl;
-
 }
 
 
 int main() {
 	srand(time(0));
-
+	locale::global(locale(""));
 	listaref ref;
 	ref.actual = NULL;
 
@@ -126,15 +125,26 @@ int main() {
 		aux->seguinte = novo_grupo;
 	}
 	//verificar se tem plafond
-//remover_low_plafond(fila_espera, ref);
+	//mostrar_fila(fila_espera);
+	/*pessoa_cantina* aux = fila_espera;
+	while (aux != NULL) {
+		if (aux->plafond < ref.actual->preco) {
+			cout << "Remover:" << aux->numero << endl;
+			pessoa_cantina* aux2 = aux->seguinte;
+			while (aux2 != NULL&&aux2->plafond< ref.actual->preco) {
+				aux2 = aux2->seguinte;
+			}
+			aux = aux2;
+			aux2->seguinte = NULL;
+		}
+		else {
+			aux = aux->seguinte;
+		}
+	}*/
 
-	mostrar_fila(fila_espera);
 
 	//int vezes_p_colocar_pessoa_mesa = cantina->n_mesas;
 	fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
-
-	//mostrar_mesa(cantina);
-	mostrar_fila(fila_espera);
 	
 	while (opcao != 'x') {
 		menu(ref, cantina,fila_espera);
