@@ -24,7 +24,7 @@ std::string random_line(string path) //http://www.cplusplus.com/forum/general/11
 pessoa_cantina* cria_grupo() {
 	int n_elementos = rand() % 9 + 1;
 	int n_grupo = rand() % 401 + 100;
-	int ciclos = rand()%3 + 2;
+	int ciclos = 5;
 	string curso= random_line("cursos.txt");
 	bool tipo = false;//falso -aluno
 	if (rand() % 10 < 5) {
@@ -43,16 +43,17 @@ pessoa_cantina* cria_grupo() {
 		pessoa_cantina* nova = new pessoa_cantina;
 		string pn = random_line("pr.txt");
 		string un = random_line("ul.txt");
-		double numero = rand() % 89000 + 10000;
+		long numero = rand() % 89000 + 10000;
 		if (tipo) {
 			numero = rand() % 8900 + 1000;
 		}
 		nova->staff_ou_grupo = tipo;
-		if (!tipo&&rand()%10<5) {
+		if (!tipo) {
 			nova->curso = curso;
 		}
-		else
+		else {
 			nova->curso = "";
+		}
 		nova->pnome = pn;
 		nova->unome = un;
 		nova->plafond = (rand() % 1000 + 10) * 0.1;

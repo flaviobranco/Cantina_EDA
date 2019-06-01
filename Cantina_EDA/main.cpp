@@ -155,7 +155,7 @@ int main() {
 				aux2->seguinte = novo_grupo;
 				//remover_low_plafond(fesp, ref);
 
-				//fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
+				fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
 				break;
 			}
 			case'e': {

@@ -43,33 +43,76 @@ pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila) {
 	mesa* aux_m = mesas;
 	pessoa_cantina* aux1 = fila;
 	string curso_mesa = "";//"nulo" se não houver alunos na mesa
-	bool expirado=false;
+	string curso_fila = "";
+	//bool expirado=false;
 	while (aux_m != NULL)
 	{
 		if (aux_m->ocupantes != NULL) {
-			while (aux_m->ocupantes != NULL) {
-				if (aux_m->ocupantes->ciclos == 0) {
+			pessoa_cantina* aux_moa = aux_m->ocupantes;
+			while (aux_moa != NULL) {
+				aux_moa->ciclos--;
+				if (aux_moa->ciclos == 0) {
 					aux_m->n_vagas++;
-					bool expirado = true;
+					//bool expirado = true;
 				}
-				aux_m->ocupantes = aux_m->ocupantes->seguinte;
+				aux_moa = aux_moa->seguinte;
+			}
+			if (aux_m->n_vagas > 0) {
+				aux_moa = aux_m->ocupantes;
+				while (aux_m->ocupantes != NULL) {
+					if (aux_m->ocupantes->ciclos == 0) {
+						pessoa_cantina* aux_mciclo = aux_m->ocupantes;
+						if (aux_mciclo->seguinte == NULL) {
+							aux_m->ocupantes = NULL;
+						}
+						else {
+							while (aux_mciclo->ciclos == 0 && aux_mciclo->seguinte != NULL) {
+								aux_mciclo = aux_mciclo->seguinte;
+							}
+							if (aux_mciclo->ciclos == 0) {
+								aux_m->ocupantes = NULL;
+							}
+							else if (aux_mciclo->seguinte == NULL) {
+								aux_m->ocupantes = aux_mciclo;
+							}
+							else {
+								aux_m->ocupantes = aux_mciclo->seguinte;
+								aux_mciclo->seguinte = NULL;
+							}
+						}
+					}
+					else {
+						aux_m->ocupantes = aux_m->ocupantes->seguinte;
+					}
+				}
 			}
 		}
-		if (aux_m->n_vagas >0 ) {//se houver vagas
+		if (aux_m->n_vagas >0) {//se houver vagas ou se houver elementos da mesa que devem sair por ciclos acabados
 			if (aux_m->ocupantes != NULL) { //se a mesa conter pessoas, senão curso_mesa==NULL
-				while (aux_m->ocupantes->staff_ou_grupo && aux_m->ocupantes->seguinte != NULL) {//ver se há alunos,para evitar mesas com alunos de cursos diferentes
-					aux_m->ocupantes = aux_m->ocupantes->seguinte;
-				}
-				if (aux_m->ocupantes != NULL&&!aux_m->ocupantes->staff_ou_grupo) { //se houver 
-					curso_mesa = aux_m->ocupantes->curso;// registar os cursos
-				}
-				aux_m = mesas;
+					pessoa_cantina*aux_moa = aux_m->ocupantes;
+					while (aux_moa->staff_ou_grupo && aux_moa->seguinte != NULL) {//ver se há alunos,para evitar mesas com alunos de cursos diferentes na mesma mesa
+						aux_moa = aux_moa->seguinte;
+					}
+					if (aux_m->ocupantes != NULL && !aux_m->ocupantes->staff_ou_grupo && aux_moa->ciclos >0) { //se houver alunos na mesa
+						curso_mesa = aux_moa->curso;// irá defenir o curso mesa, para impedir alunos com diferentes cursos na mesma mesa
+						curso_fila = curso_mesa;
+					}
 			}
-			if (aux1 != NULL) {
+			if (aux1 != NULL) {//se a fila não estiver vazia
 				aux1 = fila;
 				if (aux1->curso == curso_mesa || curso_mesa == "" || aux1->staff_ou_grupo) { //o primeiro é aluno ou staff? , se é aluno, só entra se tiverem o mesmo curso ou se o curso_mesa ou curso_fila for string vazia
 					aux_m->n_vagas -= 1;//tirar o primeiro
-					while (aux1->seguinte != NULL &&( (aux1->seguinte->curso == aux1->curso) || aux1->seguinte->staff_ou_grupo) && aux_m->n_vagas >0) {// verifica: fila vazia ou não E( se o aluno da fila é do mesmo curso do primeiro OU se é staff) E vagas ocupadas 
+					pessoa_cantina* aux1a = aux1;
+					int quant_mesa_max_aux = aux_m->n_vagas;
+					while(!aux1a->staff_ou_grupo&&curso_mesa==""&& quant_mesa_max_aux!=0) {//se o primeiro elemento da fila for aluno
+						quant_mesa_max_aux--;
+						aux1a->seguinte;
+					}
+					if (aux1a != NULL && !aux1->staff_ou_grupo && curso_mesa == "") {
+						curso_fila = aux1a->curso;
+					}
+					aux1 = fila;
+					while (aux1 != NULL && ((aux1->seguinte->curso==curso_fila||curso_fila=="") || aux1->seguinte->staff_ou_grupo||(aux1->staff_ou_grupo&& !aux1->seguinte->staff_ou_grupo&&(aux1->seguinte->curso == curso_fila || curso_fila == ""))) && aux_m->n_vagas > 0) {// verifica: fila vazia ou não E( se o aluno da fila é do mesmo curso do primeiro OU se é staff) E vagas ocupadas 
 						aux_m->n_vagas -= 1;//tirar os seguintes
 						aux1 = aux1->seguinte;
 					}
@@ -89,27 +132,16 @@ pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila) {
 						aux_m->ocupantes = aux2;
 					}
 					else {
-						while (aux_m->ocupantes != NULL) {
-							if (aux_m->ocupantes->ciclos == 0) {
-								pessoa_cantina* aux_mciclo = aux_m->ocupantes;
-								while (aux_mciclo->ciclos == 0 && aux_mciclo != NULL) {
-									aux_mciclo = aux_mciclo->seguinte;
-								}
-								if (aux_mciclo == NULL) {
-									aux_m->ocupantes = NULL;
-								}
-								else {
-									aux_m->ocupantes = aux_mciclo;
-								}
-							}
+						while (aux_m->ocupantes->seguinte != NULL) {
 							aux_m->ocupantes = aux_m->ocupantes->seguinte;
 						}
-						aux_m->ocupantes = aux2;
-					}
+						aux_m->ocupantes->seguinte = aux2;
+						//expirado = false;
+				    }
 				}
 			}
 		}
 		aux_m = aux_m->seguinte;
-	}
-	return fila;
+	}	
+return fila;
 }

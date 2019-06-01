@@ -19,6 +19,6 @@ struct pessoa_cantina {
 };
 
 pessoa_cantina* cria_grupo();
-pessoa_cantina* remover_low_plafond(pessoa_cantina* fila, listaref refeicao);
+//pessoa_cantina* remover_low_plafond(pessoa_cantina* fila, listaref refeicao);
 
 #endif
