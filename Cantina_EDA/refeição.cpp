@@ -20,14 +20,20 @@ void alterar_refeicao (struct listaref &lista) {
 	cout << "A cantina EDA precisa de uma nova refeição" << endl;
 	string entrada;
 	string prato;
-	float preço;
+	double preco;
 	cout << "Introduza a entrada: " << endl; 
 	getline(cin,entrada);
 	cout << "Introduza prato: " << endl;
 	getline(cin,prato);
 	cout << "Indroduza o preço \n";
-	cin>> preço;
-	novarefeicao(lista, entrada, prato, preço);
+	cin>> preco;
+	listaref::refeicao* novarefeicao = new listaref::refeicao();
+	novarefeicao->entrada = entrada;
+	novarefeicao->prato = prato;
+	novarefeicao->preco = preco;
+	novarefeicao->anterior = lista.actual;
+	lista.actual = novarefeicao;
+	//novarefeicao(lista, entrada, prato, preço);
 }
 
 void mostrar_refeicao (struct listaref &lista) {

@@ -10,7 +10,7 @@ struct pessoa_cantina {
 	string unome;
 	string curso;
 	long numero;
-	float plafond;
+	double plafond;
 	int n_grup;
 	int ciclos;
 	bool staff_ou_grupo;

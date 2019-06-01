@@ -24,7 +24,7 @@ void centerstring(const char* s) // para escrever texto no centro -> from born2c
 void mostrar_mesa(mesa* cantina) {
 	mesa* mesa_aux = cantina;
 	while (mesa_aux != NULL) {
-		cout << "Mesa " << mesa_aux->n_mesa <<" (CAPACIDADE: "<<mesa_aux->capacidade<<"):"<<endl;
+		cout<<endl << "Mesa " << mesa_aux->n_mesa <<" (CAPACIDADE: "<<mesa_aux->capacidade<<"):"<<endl;
 		pessoa_cantina* ocupante_aux = mesa_aux->ocupantes;
 		while (ocupante_aux != NULL) {
 			cout << ocupante_aux->pnome;
@@ -57,70 +57,34 @@ void mostrar_fila(pessoa_cantina*fila_espera) {
 		cout << aux->n_grup << ",";
 		cout << aux->numero;
 		cout << " (Ciclos restantes: " << aux->ciclos << ")";
-		cout << ", Plafond: " << aux->plafond<<endl;
+		cout << ", Plafond: " << aux->plafond;
 		if (aux->especial) {
-			cout << "[ESPECIAL]" << endl;
+			cout << " [ESPECIAL]";
 		}
+		cout << endl;
 		aux = aux->seguinte;
 	}
 }
 
-mesa* ms_seguinte(mesa* ms) {
-	mesa* aux1 = ms;
-	while (aux1 != NULL) {
-		pessoa_cantina* aux2 = aux1->ocupantes;
-		while (aux2 != NULL) {
-			aux2->ciclos = aux2->ciclos-1;
-			if (aux2->ciclos = 0) {
-				aux1->ocupantes
-			}
-			aux2 = aux2->seguinte;
-		}
-		aux1 = aux1->seguinte;
-	}
-	return ms;
-}
 
-void seguinte(listaref ref, mesa* cantina, pessoa_cantina* fesp, int ciclo) {
+pessoa_cantina * seguinte(listaref ref, mesa* cantina, pessoa_cantina* fesp, int ciclo) {
 	if (ciclo % 10 == 0) {
 		alterar_refeicao(ref);
 	}
 	//ms_seguinte(cantina);
-	fesp = coloca_pessoa_mesa(cantina, fesp);
-}
-
-/*
-
-void emergencia(){
-
-}
-void extrair(){
-
-}
-void guardar() {
-
-}
-void carregar() {
-
-}
-void opcoes(refeicao  *ref, mesa  *ms, f_espera  *f_esp) {
-	char opcao;
-	cout << "1-Mostrar todas as pessoas \n";
-	cout << "4-Adicionar plafond\n";
-	cin >> opcao;
-	switch (opcao) {
-	case '1':{
-		mostrar_ordenado(pes);
-		break;
+	pessoa_cantina* novo_grupo = cria_grupo();
+	pessoa_cantina* aux = fesp;
+	while (aux->seguinte != NULL) {
+		aux = aux->seguinte;
 	}
-	case '4':{
-		alterar_plafond(f_esp);
-	}
-	default:{
-		cout << "Opção inválida" << endl;
-	}
-	}
-*/
+	aux->seguinte = novo_grupo;
+	//remover_low_plafond(fesp, ref);
+
+
+	return coloca_pessoa_mesa(cantina, fesp);
+}
+
+
 void menu(listaref &ref, mesa *ms, pessoa_cantina *f_esp){
 	centerstring("Cantina EDA");
 	cout << endl;
@@ -161,14 +125,14 @@ int main() {
 		aux->seguinte = novo_grupo;
 	}
 	//verificar se tem plafond
-	remover_low_plafond(fila_espera, ref);
+//remover_low_plafond(fila_espera, ref);
 
-	//mostrar_fila(fila_espera);
+	mostrar_fila(fila_espera);
 
 	//int vezes_p_colocar_pessoa_mesa = cantina->n_mesas;
 	fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
 
-	mostrar_mesa(cantina);
+	//mostrar_mesa(cantina);
 	mostrar_fila(fila_espera);
 	
 	while (opcao != 'x') {
@@ -179,7 +143,19 @@ int main() {
 			switch (opcao) {
 			case 's': {
 				ciclo++;
-				seguinte(ref,cantina,fila_espera,ciclo);
+				if (ciclo % 10 == 0) {
+					alterar_refeicao(ref);
+				}
+				//ms_seguinte(cantina);
+				pessoa_cantina* novo_grupo = cria_grupo();
+				pessoa_cantina* aux2 = fila_espera;
+				while (aux2->seguinte != NULL) {
+					aux2 = aux2->seguinte;
+				}
+				aux2->seguinte = novo_grupo;
+				//remover_low_plafond(fesp, ref);
+
+				//fila_espera = coloca_pessoa_mesa(cantina, fila_espera);
 				break;
 			}
 			case'e': {
@@ -195,7 +171,22 @@ int main() {
 				break;
 			}
 			case'o': {
-				//opcoes(ref, ms, f_esp, pes);
+				char opcao;
+				cout << "1-Mostrar todas as pessoas \n";
+				cout << "4-Adicionar plafond\n";
+				cin >> opcao;
+				switch (opcao) {
+				case '1': {
+					//mostrar_ordenado(fila_espera);
+					break;
+				}
+				case '4': {
+					//alterar_plafond(f_esp);
+				}
+				default: {
+					cout << "Opção inválida" << endl;
+				}
+				}
 				break;
 			}
 			case'x': {

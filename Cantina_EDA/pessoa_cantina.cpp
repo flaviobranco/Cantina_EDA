@@ -31,7 +31,7 @@ pessoa_cantina* cria_grupo() {
 		tipo = true;
 	}
 	bool especial = false;
-	if (!tipo&&rand() % 100+ 1<= 5) {
+	if (!tipo&&rand()%100<5) {
 		especial = true;
 	}
 	pessoa_cantina* grupo = NULL;
@@ -43,20 +43,24 @@ pessoa_cantina* cria_grupo() {
 		pessoa_cantina* nova = new pessoa_cantina;
 		string pn = random_line("pr.txt");
 		string un = random_line("ul.txt");
-		long numero = rand() % 89000 + 10000;
+		double numero = rand() % 89000 + 10000;
 		if (tipo) {
 			numero = rand() % 8900 + 1000;
 		}
 		nova->staff_ou_grupo = tipo;
-		if (!tipo) {
+		if (!tipo&&rand()%10<5) {
 			nova->curso = curso;
 		}
+		else
+			nova->curso = "";
 		nova->pnome = pn;
 		nova->unome = un;
 		nova->plafond = (rand() % 1000 + 10) * 0.1;
 		nova->numero = numero;
 		nova->n_grup = n_grupo;
 		nova->ciclos = ciclos;
+		nova->especial = especial;
+		nova->staff_ou_grupo = tipo;
 		if (grupo == NULL){
 			grupo = nova;
 			nova->seguinte = NULL;
@@ -69,38 +73,39 @@ pessoa_cantina* cria_grupo() {
 	return grupo;
 }
 
-pessoa_cantina* remover_low_plafond(pessoa_cantina* fila, listaref refeicao) {
-	pessoa_cantina* aux = fila;
-	float preco = refeicao.actual->preco;
-	float preco_fila;
-	while (aux != NULL) {
-		preco_fila = aux->plafond;
-		if (preco_fila < preco) {
-			//char opcao=NULL;
-			//cout << "Umapessoa da fila não pussui o plafond suficiente para a refeiçao. O que quer fazer?" << endl << "1-Remover só a pessoa" << endl << "2-Remover o grupo" << endl;
-			//cin >> opcao;
-			//remover um elemento
-			pessoa_cantina* aux2 = aux;
-			while (preco_fila < preco && aux2 != NULL) {
-				aux2 = aux2->seguinte;
-				preco_fila = aux2->plafond;
-			}
-			cout << "Plafond baixo detetado, remover elemento" << endl;
-			if (aux2 == NULL) {
-				aux = NULL;
-			}
-			else if(aux2->seguinte==NULL){
-				aux = aux2;
-			}
-			else {
-				aux->seguinte = aux2;
-				aux = aux->seguinte;
-			}
-		}
-		aux = aux->seguinte;
-	}
-	return fila;
-}
+//pessoa_cantina* remover_low_plafond(pessoa_cantina* fila, listaref refeicao) {
+//	pessoa_cantina* aux = fila;
+//	float preco = refeicao.actual->preco;
+//	float preco_fila;
+//	while (aux != NULL) {
+//		preco_fila = aux->plafond;
+//		if (preco_fila < preco) {
+//			//char opcao=NULL;
+//			//cout << "Umapessoa da fila não pussui o plafond suficiente para a refeiçao. O que quer fazer?" << endl << "1-Remover só a pessoa" << endl << "2-Remover o grupo" << endl;
+//			//cin >> opcao;
+//			//remover um elemento
+//			pessoa_cantina* aux2 = aux;
+//			while (preco_fila < preco && aux != NULL) {
+//				aux = aux->seguinte;
+//				preco_fila = aux->plafond;
+//			}
+//			cout << "Plafond baixo detetado, remover elemento" << endl;
+//			if (aux == NULL) {
+//				fila == aux;
+//				aux == NULL;
+//			}
+//			else{
+//				fila = aux->seguinte;
+//				aux->seguinte = NULL;
+//				aux = fila;
+//			}
+//		}
+//		else {
+//			aux = aux->seguinte;
+//		}
+//	}
+//	return fila;
+//}
 
 /*pessoa_cantina* sort_especial(pessoa_cantina* fila) {
 	pessoa_cantina* aux = fila;

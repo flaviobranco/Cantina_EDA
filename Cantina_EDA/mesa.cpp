@@ -43,33 +43,33 @@ pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila) {
 	mesa* aux_m = mesas;
 	pessoa_cantina* aux1 = fila;
 	string curso_mesa = "";//"nulo" se não houver alunos na mesa
-	string curso_fila = "";//"nulo" se não houver alunos nas primeiras pessoas da fila
+	bool expirado=false;
 	while (aux_m != NULL)
 	{
-		if (aux_m->n_vagas >0) {//se houver vagas
+		if (aux_m->ocupantes != NULL) {
+			while (aux_m->ocupantes != NULL) {
+				if (aux_m->ocupantes->ciclos == 0) {
+					aux_m->n_vagas++;
+					bool expirado = true;
+				}
+				aux_m->ocupantes = aux_m->ocupantes->seguinte;
+			}
+		}
+		if (aux_m->n_vagas >0 ) {//se houver vagas
 			if (aux_m->ocupantes != NULL) { //se a mesa conter pessoas, senão curso_mesa==NULL
-				mesa* aux_m2 = mesas;// auxiliar
-				while (aux_m2->ocupantes->staff_ou_grupo && aux_m2->ocupantes != NULL) {//ver se há alunos,para evitar mesas com alunos de cursos diferentes
-					aux_m2->ocupantes = aux_m2->ocupantes->seguinte;
+				while (aux_m->ocupantes->staff_ou_grupo && aux_m->ocupantes->seguinte != NULL) {//ver se há alunos,para evitar mesas com alunos de cursos diferentes
+					aux_m->ocupantes = aux_m->ocupantes->seguinte;
 				}
-				if (aux_m2->ocupantes != NULL&&!aux_m2->ocupantes->staff_ou_grupo) { //se houver 
-					curso_mesa = aux_m2->ocupantes->curso;// registar os cursos
+				if (aux_m->ocupantes != NULL&&!aux_m->ocupantes->staff_ou_grupo) { //se houver 
+					curso_mesa = aux_m->ocupantes->curso;// registar os cursos
 				}
+				aux_m = mesas;
 			}
 			if (aux1 != NULL) {
-				int quant_cap_max = 5; //capacidade mesa máxima=5
-				pessoa_cantina* aux1_a = fila;// auxiliar
-				while (aux1_a != NULL && aux1_a->staff_ou_grupo && aux1_a != NULL && quant_cap_max != 0) {//ver se há alunos,para evitar mesas com alunos de cursos diferentes
-					aux1_a = aux1_a->seguinte;
-					quant_cap_max -= 1;
-				}
-				if (aux1_a != NULL&&!aux1_a->staff_ou_grupo) { //se houver 
-					curso_fila = aux1_a->curso;// registar os cursos
-				}
 				aux1 = fila;
-				if (curso_fila == curso_mesa || curso_mesa == "" || curso_fila=="") { //o primeiro é aluno ou staff? , se é aluno, só entra se tiverem o mesmo curso ou se o curso_mesa ou curso_fila for string vazia
+				if (aux1->curso == curso_mesa || curso_mesa == "" || aux1->staff_ou_grupo) { //o primeiro é aluno ou staff? , se é aluno, só entra se tiverem o mesmo curso ou se o curso_mesa ou curso_fila for string vazia
 					aux_m->n_vagas -= 1;//tirar o primeiro
-					while (aux1 != NULL &&( (aux1->seguinte->curso == curso_fila) || aux1->seguinte->staff_ou_grupo) && aux_m->n_vagas >0) {// verifica: fila vazia ou não E( se o aluno da fila é do mesmo curso do primeiro OU se é staff) E vagas ocupadas 
+					while (aux1->seguinte != NULL &&( (aux1->seguinte->curso == aux1->curso) || aux1->seguinte->staff_ou_grupo) && aux_m->n_vagas >0) {// verifica: fila vazia ou não E( se o aluno da fila é do mesmo curso do primeiro OU se é staff) E vagas ocupadas 
 						aux_m->n_vagas -= 1;//tirar os seguintes
 						aux1 = aux1->seguinte;
 					}
@@ -77,9 +77,9 @@ pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila) {
 					if(aux1==NULL){
 						fila = NULL;
 					}
-					if (aux1->seguinte == NULL) {
+					else if (aux1->seguinte == NULL) {
 						fila = aux1;
-						aux1 = NULL;// tirar pessoas da fila
+						//aux1 = NULL;// tirar pessoas da fila
 					}
 					else {
 						fila = aux1->seguinte;
@@ -89,8 +89,22 @@ pessoa_cantina* coloca_pessoa_mesa(mesa* mesas, pessoa_cantina* fila) {
 						aux_m->ocupantes = aux2;
 					}
 					else {
-						aux_m->ocupantes->seguinte = aux2;
-						aux_m->ocupantes = aux_m->ocupantes->seguinte;
+						while (aux_m->ocupantes != NULL) {
+							if (aux_m->ocupantes->ciclos == 0) {
+								pessoa_cantina* aux_mciclo = aux_m->ocupantes;
+								while (aux_mciclo->ciclos == 0 && aux_mciclo != NULL) {
+									aux_mciclo = aux_mciclo->seguinte;
+								}
+								if (aux_mciclo == NULL) {
+									aux_m->ocupantes = NULL;
+								}
+								else {
+									aux_m->ocupantes = aux_mciclo;
+								}
+							}
+							aux_m->ocupantes = aux_m->ocupantes->seguinte;
+						}
+						aux_m->ocupantes = aux2;
 					}
 				}
 			}

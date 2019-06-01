@@ -6,7 +6,7 @@ struct listaref {
 	struct refeicao {
 		string entrada;
 		string prato;
-		float preco;
+		double preco;
 		refeicao* anterior;
 	}; refeicao* actual;
 };
